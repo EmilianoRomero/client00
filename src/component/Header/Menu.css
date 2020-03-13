@@ -1,0 +1,28 @@
+.menuNavigation {
+    display        : flex;
+    flex-direction : row;
+    flex-wrap      : nowrap;
+    width          : 100%;
+    height         : auto;
+    justify-content: flex-end;
+    align-items    : center;
+    align-content  : center;
+    padding-right: 50px;
+}
+
+.menuOptions a {
+    color: white;
+    text-decoration: none;
+}
+
+.menuOptions a:hover,
+.menuOptions a:active {
+    color: orangered;
+}
+
+.menuOptions ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+}

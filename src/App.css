@@ -1,0 +1,79 @@
+/*Global*/
+* {
+    padding: 0;
+    margin: 0;
+  }
+  
+  /*width: 100vw; and height: 100vh stretch to the full width and height of the device*/
+  #main-container-fluid {
+    padding: 0;
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    grid-template-rows: 5% 15% 7.5% 7.5% 5% 55% 5%;
+    grid-template-areas:
+      "header"
+      "logo"
+      "moto"
+      "arrow"
+      "titleGallery"
+      "img-gallery"
+      "slideBar";
+    /*grid-template-rows: auto;*/
+    justify-content: stretch;
+    align-content: stretch;
+    justify-items: stretch;
+    align-items: stretch;
+  }
+  
+  .header {
+    display: flex;
+    /*top: 0;
+    left: 0;*/
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    width: 100%;
+    height: auto;
+    background: rgb(240, 85, 13);
+  }
+  
+  .logo {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+  
+  .logoImg {
+    object-fit: cover;
+    width: 60%;
+  }
+  
+  .arrow,
+  .motoTxt {
+    margin: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
+    align-content: center;
+  }
+  
+  .arrowImg {
+    object-fit: contain;
+    width: 15%;
+  }
+  
+  .titleGalleryTxt {
+    margin: 0;
+    padding: 0;
+    padding-left: 50px;
+  }

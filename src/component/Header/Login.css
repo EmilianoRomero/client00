@@ -1,0 +1,11 @@
+.login {
+display        : flex;
+flex-direction : row;
+flex-wrap      : nowrap;
+width          : 100%;
+height         : auto;
+justify-content: flex-start;
+align-items    : center;
+align-content  : center;
+padding-left: 50px;
+}
