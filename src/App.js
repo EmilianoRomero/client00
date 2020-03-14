@@ -5,12 +5,12 @@ import { BrowserRouter, Route, Switch } from "react-router-dom"
 import "./App.css"
 import Menu from "./component/Header/Menu"
 import Login from "./component/Header/Login"
-import Logo from "./component/Images/MYtineraryLogo.png"
-import Arrow from "./component/Images/circled-right-2.png"
+import Logo from "./component/00Images/MYtineraryLogo.png"
+import Arrow from "./component/00Images/circled-right-2.png"
 import SideDrawer from "./component/SideDrawer/SideDrawer"
 import Backdrop from "./component/Backdrop/Backdrop"
 //import Slider from "./component/Slider/Slider" --> activar para ver original
-//import Carousel from './component/Carousel/Carousel' --> NO
+import Carousel from './component/Carousel/Carousel'
 
 export default class App extends Component {
   //We need to be able to listen to the click on the menu,
@@ -83,14 +83,14 @@ export default class App extends Component {
             <div className="arrow">
               <img className="arrowImg" src={Arrow} alt="" />
             </div>
-            <div className="titleGallery">
-              <h3 className="titleGalleryTxt">Popular MYtineraries</h3>
+            <div className="title-gallery">
+              <h3 className="titleGalleryTxt">Populate MYtineraries</h3>
             </div>
-            <div className="img-gallery">
+            <div className="carousel-container">
                 {/*<!Slider />*/}
-                {/*<Carousel />*/}
+                <Carousel />
             </div>
-            <div className="slideBar">
+            <div className="slide-bar">
               <h2>slide bar</h2>
             </div>
           </div>

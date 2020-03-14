@@ -16,9 +16,9 @@
       "logo"
       "moto"
       "arrow"
-      "titleGallery"
-      "img-gallery"
-      "slideBar";
+      "title-gallery"
+      "carousel-container"
+      "slide-Bar";
     /*grid-template-rows: auto;*/
     justify-content: stretch;
     align-content: stretch;
