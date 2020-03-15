@@ -55,7 +55,8 @@
   }
   
   .arrow,
-  .motoTxt {
+  .motoTxt,
+  .login-reg {
     margin: 0;
     width: 100%;
     height: auto;
@@ -67,9 +68,11 @@
     align-content: center;
   }
   
-  .arrowImg {
+  .arrowImg,
+  .login-reg-icon {
     object-fit: contain;
     width: 15%;
+    cursor: pointer;
   }
   
   .titleGalleryTxt {
@@ -77,3 +80,8 @@
     padding: 0;
     padding-left: 50px;
   }
+
+  .carousel-container {
+    position: relative;
+    
+}

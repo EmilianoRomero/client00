@@ -1,16 +1,19 @@
-import React, { Component } from "react"
-import Landing from "./screen/Landing"
-import Cities from "./cities"
-import { BrowserRouter, Route, Switch } from "react-router-dom"
-import "./App.css"
-import Menu from "./component/Header/Menu"
-import Login from "./component/Header/Login"
-import Logo from "./component/00Images/MYtineraryLogo.png"
-import Arrow from "./component/00Images/circled-right-2.png"
-import SideDrawer from "./component/SideDrawer/SideDrawer"
-import Backdrop from "./component/Backdrop/Backdrop"
-//import Slider from "./component/Slider/Slider" --> activar para ver original
-import Carousel from './component/Carousel/Carousel'
+import React, { Component } from "react";
+import Landing from "./screen/Landing";
+import Cities from "./cities";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import "./App.css";
+import Menu from "./component/Header/Menu";
+//import Login from "./component/Header/Login"
+import Logo from "./component/00Images/MYtineraryLogo.png";
+import Arrow from "./component/00Images/circled-right-2.png";
+import User from "./component/00Images/user.png";
+import SideDrawer from "./component/SideDrawer/SideDrawer";
+import Backdrop from "./component/Backdrop/Backdrop";
+//import LoginLink from "./component/Login/LoginLink";
+//import RegisterLink from "./component/Register/RegisterLink";
+import LoginRegModal from "./component/LoginReg/LoginRegModal";
+import Carousel from "./component/Carousel/Carousel";
 
 export default class App extends Component {
   //We need to be able to listen to the click on the menu,
@@ -58,7 +61,11 @@ export default class App extends Component {
               <Route exact path="./cities" component={Cities} />
             </Switch>
             <div className="header">
-              <Login />
+              <div className="login-reg">
+                <img className="login-reg-icon" src={User} alt="" />
+              </div>
+              <LoginRegModal />
+              {/*</div>*/}
               {/*Paso una referencia al método, no es que lo ejecuto*/}
               {/*Ejecutar implica que esté escrito así drawerToggleClickHandler(),*/}
               {/*con los paréntesis al final*/}
@@ -87,8 +94,8 @@ export default class App extends Component {
               <h3 className="titleGalleryTxt">Populate MYtineraries</h3>
             </div>
             <div className="carousel-container">
-                {/*<!Slider />*/}
-                <Carousel />
+              {/*<!Slider />*/}
+              <Carousel />
             </div>
             <div className="slide-bar">
               <h2>slide bar</h2>
@@ -99,7 +106,6 @@ export default class App extends Component {
     );
   }
 }
-
 
 /* ESTO VA JUSTO DESPUÉS DE
 <div className="img-gallery">

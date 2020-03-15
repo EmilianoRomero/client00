@@ -6,11 +6,11 @@ import Images from "./images.json";
 class CarouselContent extends Component {
   render() {
     return (
-      <div>
+      <div className="carousel-content">
         {Images.map((image, index) => {
           return (
-            <div className="city-image">
-              <img key={index} src={image.link} alt="" />
+            <div className="city-image-div">
+              <img className="city-image" key={index} src={image.link} alt="" />
             </div>
           );
         })}

@@ -1,0 +1,19 @@
+.login {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: auto;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+}
+
+.loginLink-active {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    color: tomato;
+    font-weight: bolder;
+    font-size: 5vw;
+}

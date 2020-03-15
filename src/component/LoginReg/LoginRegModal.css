@@ -1,0 +1,17 @@
+.login-reg {
+    margin: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
+    align-content: center;
+  }
+  
+  .login-reg-icon {
+    object-fit: contain;
+    width: 15%;
+    cursor: pointer;
+  }
