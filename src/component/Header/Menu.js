@@ -1,6 +1,6 @@
 import React from "react";
 import './Menu.css';
-import DrawerToggleButton from "../SideDrawer/DrawerToggleButton";
+import DrawerToggleButton from "./DrawerToggleButton";
 
 const Menu = props => (
     <nav className="menuNavigation">

@@ -12,25 +12,26 @@
 
 .login-reg-icon {
   object-fit: contain;
-  width: 15%;
+  width: 9%;
   cursor: pointer;
-  position: relative;
+  position: absolute;
 }
 
 .modal-login-reg {
+  padding-left: 15px;
   position: relative;
   display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
+  flex-wrap: wrap;
+  flex-direction: row;
   justify-content: flex-start;
-  align-content: center;
+  align-content: flex-start;
   align-items: center;
   overflow: hidden;
-  /*transform: translate(-50%, -50%);*/
-  background: #fff;
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
+  transform: translate(-85%, 75%);
+  background: rgb(205, 200, 200);
+  width: 95%;
+  height: 100px;
+  border-radius: 6px;
   box-sizing: border-box;
   box-shadow: 0 0 20px rgba(0, 0, 0, .2);
 }

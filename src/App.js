@@ -8,14 +8,15 @@ import Menu from "./component/Header/Menu";
 import Logo from "./component/00Images/MYtineraryLogo.png";
 import Arrow from "./component/00Images/circled-right-2.png";
 //import User from "./component/00Images/user.png";
-import SideDrawer from "./component/SideDrawer/SideDrawer";
-import Backdrop from "./component/Backdrop/Backdrop";
+import SideDrawer from "./component/Header/SideDrawer";
+import Backdrop from "./component/Header/Backdrop";
 //import LoginLink from "./component/Login/LoginLink";
 //import RegisterLink from "./component/Register/RegisterLink";
-import LoginRegModal from "./component/LoginReg/LoginRegModal";
+import LoginRegModal from "./component/Header/LoginRegModal";
 import Carousel from "./component/Carousel/Carousel";
-import RightArrow from "./component/Carousel/RightArrow";
-import LeftArrow from "./component/Carousel/LeftArrow";
+import Slider from "./component/Carousel/Slider";
+//import RightArrow from "./component/Carousel/RightArrow";
+//import LeftArrow from "./component/Carousel/LeftArrow";
 
 export default class App extends Component {
   //We need to be able to listen to the click on the menu,
@@ -91,15 +92,14 @@ export default class App extends Component {
               <img className="arrowImg" src={Arrow} alt="" />
             </div>
             <div className="title-gallery">
-              <h3 className="titleGalleryTxt">Populate MYtineraries</h3>
+              <h3 className="titleGalleryTxt">Popular MYtineraries</h3>
             </div>
             <div className="carousel-container">
               {/*<!Slider />*/}
               <Carousel />
             </div>
             <div className="slide-bar">
-              <LeftArrow />
-              <RightArrow />
+              <Slider />
             </div>
           </div>
         </div>

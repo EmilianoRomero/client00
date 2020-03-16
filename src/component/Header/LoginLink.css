@@ -1,15 +1,14 @@
-.register-link-active {
+.login-link-active {
     padding: 0;
     margin: 0;
     text-align: left;
     color: tomato;
     font-weight: normal;
-    font-size: 3vw;
-    }
+    font-size: 3.5vw;
+}
 
-.register,
-.register-link
-{
+.login,
+.login-link {
     justify-content: flex-start;
     align-content: center;
     align-items: center;
