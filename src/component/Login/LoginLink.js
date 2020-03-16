@@ -9,8 +9,8 @@ export default class LoginLink extends Component {
         <NavLink
           exact
           to="/"
-          className="loginLink"
-          activeClassName="loginLink-active"
+          className="login-link"
+          activeClassName="login-link-active"
         >
           Log in
         </NavLink>

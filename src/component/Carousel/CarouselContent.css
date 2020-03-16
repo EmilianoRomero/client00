@@ -1,25 +1,22 @@
 .carousel-content {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-    height: auto;
-    position: relative;
-    justify-content: space-evenly;
-    align-content: space-around;
-    align-items: center;
-    overflow: hidden;
-}
-
-.city-image-div {
+    width: 820px;
+    height:auto;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: space-between;
+    align-items: center;
+    overflow: scroll;
+    position: relative;
+}
+
+.city-image-div {
     width: 400px;
     height: 400px;
     margin: 10px;
+    border-radius: 4px;
     position: relative;
-    overflow: hidden;
 }
 
 .city-image {

@@ -20,22 +20,22 @@
       "carousel-container"
       "slide-Bar";
     /*grid-template-rows: auto;*/
-    justify-content: stretch;
-    align-content: stretch;
-    justify-items: stretch;
-    align-items: stretch;
   }
   
-  .header {
+  .header,
+  .slide-bar {
     display: flex;
     /*top: 0;
     left: 0;*/
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-around;
     width: 100%;
     height: auto;
     background: rgb(240, 85, 13);
+  }
+  
+  .slide-bar {
+  justify-content: space-evenly;
   }
   
   .logo {
@@ -55,8 +55,7 @@
   }
   
   .arrow,
-  .motoTxt,
-  .login-reg {
+  .motoTxt {
     margin: 0;
     width: 100%;
     height: auto;
@@ -68,10 +67,10 @@
     align-content: center;
   }
   
-  .arrowImg,
-  .login-reg-icon {
+  .arrowImg {
     object-fit: contain;
     width: 15%;
+    position: fixed;
     cursor: pointer;
   }
   
@@ -82,6 +81,13 @@
   }
 
   .carousel-container {
-    position: relative;
-    
+    /*position: relative;*/
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    /*width: 100%;
+    height: auto;
+    overflow: scroll;*/
 }

@@ -6,9 +6,7 @@ import "./Carousel.css";
 class Carousel extends Component {
   render() {
     return (
-      <div className="carousel">
         <CarouselContent />
-      </div>
     );
   }
 }

@@ -1,17 +1,36 @@
 .login-reg {
-    margin: 0;
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: stretch;
-    align-content: center;
-  }
-  
-  .login-reg-icon {
-    object-fit: contain;
-    width: 15%;
-    cursor: pointer;
-  }
+  margin-left: 50px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+}
+
+.login-reg-icon {
+  object-fit: contain;
+  width: 15%;
+  cursor: pointer;
+  position: relative;
+}
+
+.modal-login-reg {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  overflow: hidden;
+  /*transform: translate(-50%, -50%);*/
+  background: #fff;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-sizing: border-box;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+}

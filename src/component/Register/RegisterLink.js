@@ -9,8 +9,8 @@ export default class RegisterLink extends Component {
         <NavLink
           exact
           to="/"
-          className="registerLink"
-          activeClassName="registerLink-active"
+          className="register-link"
+          activeClassName="register-link-active"
         >
           Create Account
         </NavLink>

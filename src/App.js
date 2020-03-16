@@ -7,13 +7,15 @@ import Menu from "./component/Header/Menu";
 //import Login from "./component/Header/Login"
 import Logo from "./component/00Images/MYtineraryLogo.png";
 import Arrow from "./component/00Images/circled-right-2.png";
-import User from "./component/00Images/user.png";
+//import User from "./component/00Images/user.png";
 import SideDrawer from "./component/SideDrawer/SideDrawer";
 import Backdrop from "./component/Backdrop/Backdrop";
 //import LoginLink from "./component/Login/LoginLink";
 //import RegisterLink from "./component/Register/RegisterLink";
 import LoginRegModal from "./component/LoginReg/LoginRegModal";
 import Carousel from "./component/Carousel/Carousel";
+import RightArrow from "./component/Carousel/RightArrow";
+import LeftArrow from "./component/Carousel/LeftArrow";
 
 export default class App extends Component {
   //We need to be able to listen to the click on the menu,
@@ -61,9 +63,7 @@ export default class App extends Component {
               <Route exact path="./cities" component={Cities} />
             </Switch>
             <div className="header">
-              <div className="login-reg">
-                <img className="login-reg-icon" src={User} alt="" />
-              </div>
+              {/*originalmente acá <div> - <img /> - </div> */}
               <LoginRegModal />
               {/*</div>*/}
               {/*Paso una referencia al método, no es que lo ejecuto*/}
@@ -98,7 +98,8 @@ export default class App extends Component {
               <Carousel />
             </div>
             <div className="slide-bar">
-              <h2>slide bar</h2>
+              <LeftArrow />
+              <RightArrow />
             </div>
           </div>
         </div>

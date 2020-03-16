@@ -1,19 +1,15 @@
-.login {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    width: 100%;
-    height: auto;
-    justify-content: space-evenly;
-    align-items: center;
-    align-content: center;
-}
-
-.loginLink-active {
+.login-link-active {
     padding: 0;
     margin: 0;
-    text-align: center;
+    text-align: left;
     color: tomato;
-    font-weight: bolder;
-    font-size: 5vw;
+    font-weight: normal;
+    font-size: 3vw;
+}
+
+.login,
+.login-link {
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
 }
