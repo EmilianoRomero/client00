@@ -4,56 +4,38 @@ import Cities from "./cities";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Menu from "./component/Header/Menu";
-//import Login from "./component/Header/Login"
 import Logo from "./component/00Images/MYtineraryLogo.png";
 import Arrow from "./component/00Images/circled-right-2.png";
-//import User from "./component/00Images/user.png";
 import SideDrawer from "./component/Header/SideDrawer";
 import Backdrop from "./component/Header/Backdrop";
-//import LoginLink from "./component/Login/LoginLink";
-//import RegisterLink from "./component/Register/RegisterLink";
 import LoginRegModal from "./component/Header/LoginRegModal";
 import Carousel from "./component/Carousel/Carousel";
 import Slider from "./component/Carousel/Slider";
-//import RightArrow from "./component/Carousel/RightArrow";
-//import LeftArrow from "./component/Carousel/LeftArrow";
 
 export default class App extends Component {
-  //We need to be able to listen to the click on the menu,
-  //and remove the side drawer and the back drop
-  //Initial state: oculto por defecto
+
   state = {
     sideDrawerOpen: false
   };
 
-  //In the function we receive the previous state as an argument,
-  //then return the object with the updated state and we declare it
-  //open with the opposite of the previous state, => if it was T, then
-  //will be set to F and the opposite.
   drawerToggleClickHandler = () => {
     this.setState(prevState => {
       return { sideDrawerOpen: !prevState.sideDrawerOpen };
     });
   };
 
-  //Closing the side drawer. No importa el estado previo, dejar siempre closed.
   backdropClickHandler = () => {
     this.setState({ sideDrawerOpen: false });
   };
 
   render() {
-    //let sideDrawer;
     let backdrop;
-    //if this state is T, then...
-    //We call the components here instead after the return,
-    //and in its former place within the structure we place
-    //the variables, making reference to these components.
-    //Con el Backdrop component pasa lo mismo: paso la referencia a esta función,
-    //y se la llama desde su componente.
+
     if (this.state.sideDrawerOpen) {
-      //sideDrawer= <SideDrawer />;
       backdrop = <Backdrop click={this.backdropClickHandler} />;
     }
+
+    //fetch Function?
 
     return (
       <BrowserRouter>
@@ -64,18 +46,8 @@ export default class App extends Component {
               <Route exact path="./cities" component={Cities} />
             </Switch>
             <div className="header">
-              {/*originalmente acá <div> - <img /> - </div> */}
               <LoginRegModal />
-              {/*</div>*/}
-              {/*Paso una referencia al método, no es que lo ejecuto*/}
-              {/*Ejecutar implica que esté escrito así drawerToggleClickHandler(),*/}
-              {/*con los paréntesis al final*/}
-              {/*Referir: pasar dirección al método vía propiedad del componente*/}
-              {/*Esto se recibe en DrawerToggleButton component en Menu*/}
-              {/*Me llevo a {sideDrawer}*/}
               <Menu drawerClickHandler={this.drawerToggleClickHandler} />
-              {/*{sideDrawer} Se va y lo dejo siempre presente con una prop*/}
-              {/*voy a ir a modificarlo al componente en sí*/}
               <SideDrawer show={this.state.sideDrawerOpen} />
               {backdrop}
             </div>
@@ -95,7 +67,6 @@ export default class App extends Component {
               <h3 className="titleGalleryTxt">Popular MYtineraries</h3>
             </div>
             <div className="carousel-container">
-              {/*<!Slider />*/}
               <Carousel />
             </div>
             <div className="slide-bar">
