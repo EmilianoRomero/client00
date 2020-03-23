@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-//const DB = 'http://localhost:5000/cities/all'
+import './cities.css'
+//const cities = 'http://localhost:5000/cities/all'
 
 export default class Cities extends Component {
   /*
@@ -16,13 +17,31 @@ export default class Cities extends Component {
     cities: []
   };
 
+  /*
+  componentDidMount() {
+    this.getCities();
+  }
+
+  getCities = () => {
+    axios.get("http://localhost:5000/cities/all")
+    .then(res=>{
+      console.log(res);
+      if(res.data){
+        this.setState({
+        cities: res.data
+        }, console.log(res.data))
+      }
+    })
+    .catch(err => console.log(err))
+  }
+  */
   componentDidMount() {
     axios
       .get("http://localhost:5000/cities/all")
       .then(res => {
         console.log(res);
         this.setState({ cities: res.data });
-        console.log(res.data);
+        console.log(this.setState);
       })
       .catch(function(error) {
         console.log(error);
@@ -33,9 +52,9 @@ export default class Cities extends Component {
     const { cities } = this.state;
     const citiesList = cities.map((city, _id) => {
       return (
-        <div className="cities-city" key={city._id}>
+        <div className="cities" key={city._id}>
           <Link to={"/" + city._id}>
-            <img className="cites-city img" src={city.imgurl} alt="" />
+            <img className="cities-img" src={city.imgurl} alt="" />
           </Link>
         </div>
       );

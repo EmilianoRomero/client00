@@ -1,0 +1,36 @@
+.container-cities {
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    overflow: scroll; /*hidden*/
+    position: relative;
+}
+
+.cities {
+    padding: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-around;
+    align-items: center;
+    position: relative;
+    overflow: scroll;
+}
+.cities-img {
+    width: 800px;
+    height: 450px;
+    border: 6px solid tomato;
+    border-radius: 8px;
+    object-fit: cover;
+    position: relative;
+    cursor: pointer;
+}
