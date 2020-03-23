@@ -9,7 +9,7 @@
       "header"
       "logo"
       "moto"
-      "arrow"
+      "start"
       "title-gallery"
       "carousel-container"
       "slide-bar";
@@ -59,9 +59,9 @@
   }
   
   .arrowImg {
+    position: relative;
     object-fit: contain;
     width: 25%;
-    position: fixed;
     cursor: pointer;
   }
   

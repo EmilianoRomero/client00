@@ -9,7 +9,7 @@ class CarouselContent extends Component {
       <div className="carousel-content">
         {Images.map((image, index) => {
           return (
-            <div className="city-image-div">
+            <div className="city-image-div" key={image.id}>
               <img className="city-image" key={index} src={image.link} alt="" />
             </div>
           );
