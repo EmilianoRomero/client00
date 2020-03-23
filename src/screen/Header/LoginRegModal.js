@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import LoginLink from "./LoginLink";
 import RegisterLink from "./RegisterLink";
-import User from ".././00Images/user.png";
+import User from "./user.png";
 import "./LoginRegModal.css";
 
 //Acá manejo los estados T/F con una clase nueva (la clase Si está abierta)
