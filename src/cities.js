@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import './cities.css'
+import Header from "./screen/Header/Header";
+import HomeButton from "./screen/Footer/HomeButton";
+import "./cities.css";
 //const cities = 'http://localhost:5000/cities/all'
 
 export default class Cities extends Component {
@@ -52,16 +54,27 @@ export default class Cities extends Component {
     const { cities } = this.state;
     const citiesList = cities.map((city, _id) => {
       return (
-        <div className="cities" key={city._id}>
-          <Link to={"/" + city._id}>
-            <img className="cities-img" src={city.imgurl} alt="" />
-          </Link>
+        <div className="container-cities">
+          <div className="cities" key={city._id}>
+            <Link to={"/" + city._id}>
+              <img className="cities-img" src={city.imgurl} alt="" />
+            </Link>
+          </div>
         </div>
       );
     });
     return (
-      <div className="container-cities">
-        <div>{citiesList}</div>
+      <div className="cities-list-container">
+        <Header />
+        <form className="search-form">
+          <input
+            className="search-box"
+            type="text"
+            placeholder={"search your city!"}
+          ></input>
+        </form>
+        <div className="cities-list">{citiesList}</div>
+          <HomeButton />
       </div>
     );
   }

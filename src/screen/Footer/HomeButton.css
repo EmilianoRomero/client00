@@ -1,0 +1,16 @@
+.linkHome {
+    margin: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+
+  .homeImg {
+    object-fit: contain;
+    width: 8%;
+    height: auto;
+  }

@@ -16,7 +16,6 @@
     /*grid-template-rows: auto;*/
   }
   
-  .header,
   .slide-bar {
     display: flex;
     top: 0;
