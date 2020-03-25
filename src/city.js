@@ -1,20 +1,25 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-
 export default class city extends Component {
   state = {
     city: []
   };
   componentDidMount() {
     let id = this.props.match.params.city_id;
-    axios.get("http://localhost:5000/cities/all/" + id).then(res => {
-      this.setState({
-        city: res.data
-      });
-      console.log(res.data);
+      axios
+        .get("http://localhost:5000/cities/all/" + id)
+        .then(res => {
+          this.setState({
+          city: res.data
+          });
+        console.log(res.data);
+      })
+    .catch(function (error) {
+      console.log(error);
     });
   }
+
   render() {
     const city = this.state.city ? (
       <div className="city">
@@ -25,11 +30,6 @@ export default class city extends Component {
     ) : (
       <div className="center">Loading city...</div>
     );
-    return (
-      <div className="container">
-        {city}
-      </div>
-    )
+    return <div className="container">{city}</div>;
   }
- }
- 
+}

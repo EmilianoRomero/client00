@@ -3,40 +3,17 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Header from "./screen/Header/Header";
 import HomeButton from "./screen/Footer/HomeButton";
+import SearchCity from "./components/Search/SearchCity";
 import "./cities.css";
-//const cities = 'http://localhost:5000/cities/all'
 
 export default class Cities extends Component {
-  /*
   constructor(props) {
     super(props);
-    this.timer = null;
     this.state = {
-      isFetching: false,
-      cities: []};
-  }*/
-  state = {
-    cities: []
-  };
-
-  /*
-  componentDidMount() {
-    this.getCities();
+      cities: [],
+      typedCity: [] //All values stored in this.state.cities
+    };
   }
-
-  getCities = () => {
-    axios.get("http://localhost:5000/cities/all")
-    .then(res=>{
-      console.log(res);
-      if(res.data){
-        this.setState({
-        cities: res.data
-        }, console.log(res.data))
-      }
-    })
-    .catch(err => console.log(err))
-  }
-  */
   componentDidMount() {
     axios
       .get("http://localhost:5000/cities/all")
@@ -49,65 +26,56 @@ export default class Cities extends Component {
         console.log(error);
       });
   }
+  //Abajo paso el valor ingresado en el child y se lo mando al nuevo estado
+  //representado por filteredCity
+  //Ahora esto tiene que ser llamado por el child, y se hace poniéndolo
+  //como prop searchUpdate={this.searchUpdate.bind(this)}
+  searchUpdate(search) {
+    this.setState({
+      typedCity: search
+    });
+  }
 
   render() {
-    const { cities } = this.state;
-    const citiesList = cities.map((city, _id) => {
-      return (
-        <div className="container-cities">
-          <div className="cities" key={city._id}>
-            <Link to={"/" + city._id}>
-              <img className="cities-img" src={city.imgurl} alt="" />
-            </Link>
+    //console.log("filteredCity state del parent", this.state.filteredCity)
+
+    const { cities, typedCity } = this.state;
+    
+    const filteredCity = cities
+      .filter(city => {
+        let cityName = city.name.toLowerCase();
+        let typedCityName = typedCity.toString().toLowerCase();
+        typedCityName.includes(cityName)
+        return cityName.indexOf(typedCityName) !== -1;
+      })
+      .map(city => {
+        return (
+          <div className="container-cities" key={city._id}>
+            <div className="cities">
+              <Link to={"/:" + city._id}>
+                <img className="cities-img" src={city.imgurl} alt="" />
+              </Link>
+            </div>
           </div>
-        </div>
-      );
-    });
+        );
+      });
+
     return (
       <div className="cities-list-container">
         <Header />
-        <form className="search-form">
-          <input
-            className="search-box"
-            type="text"
-            placeholder={"search your city!"}
-          ></input>
-        </form>
-        <div className="cities-list">{citiesList}</div>
-          <HomeButton />
+        <SearchCity
+          filteredCity={this.state.filteredCity}
+          searchUpdate={this.searchUpdate.bind(this)}
+        />
+        {/*Con esto de arriba llamamos al método que pertenece al child*/}
+        {/*le adjudico el valor del estado resultado de filtrar una búsqueda dada*/}
+        <div className="cities-list">{filteredCity}</div>
+        <div className="fill"></div>
+        <HomeButton />
       </div>
     );
   }
 }
 
-/* SRC:
-https://gitlab.com/the-gigi/react-data-fetcher/-/blob/master/src/App.js
 
-    componentDidMount() {
-      this.fetchCities()
-      this.timer = setInterval(() => this.fetchCities(), 5000);
-    }
-  
-    componentWillUnmount() {
-      this.timer = null;
-    }
-  
-    fetchCities = () => {
-      this.setState({...this.state, isFetching: true})
-      axios.get(DB)
-        .then(response => {
-          console.log(response);
-          this.setState({cities: response.data, isFetching: false})
-        })
-        .catch(e => console.log(e));
-    }
-  
-    fetchCitiesWithFetch = () => {
-      this.setState({...this.state, isFetching: true})
-      fetch(DB)
-        .then(response => response.json())
-        .then(result => this.setState({cities: result, isFetching: false}))
-        .catch(e => console.log(e));
-    }
-  }
-*/
+//(city.name.toLowerCase().includes(this.state.filteredCities.toString().toLowerCase())

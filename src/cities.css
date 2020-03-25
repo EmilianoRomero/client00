@@ -3,11 +3,12 @@
     display: grid;
     width: 100vw;
     height: 100vh;
-    grid-template-rows: 5% 5% 85% 5%;
+    grid-template-rows: 5% 7% 83% 0.5% 4.5%;
     grid-template-areas:
         "header"
         "search-form"
         "cities-list"
+        "fill"
         "home";
 }
 
@@ -50,18 +51,3 @@
     cursor: pointer;
 }
 
-.search-form {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.search-box {
-    object-fit: contain;
-    border: 4px solid black;
-    border-radius: 8px;
-    font-size: 2.75rem;
-    text-align: center;
-}

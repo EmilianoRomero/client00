@@ -7,10 +7,11 @@
     justify-content: center;
     align-items: center;
     align-content: center;
+    background: rgb(240, 85, 13);
   }
 
   .homeImg {
     object-fit: contain;
-    width: 8%;
+    width: 7.5%;
     height: auto;
   }
