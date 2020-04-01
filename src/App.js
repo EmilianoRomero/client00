@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Landing from "./screen/Landing";
 import Cities from "./cities";
-import City from "./city";
+import City from "./components/cityComponent";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 

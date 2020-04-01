@@ -1,52 +1,44 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import Header from "./screen/Header/Header";
 import HomeButton from "./screen/Footer/HomeButton";
 import SearchCity from "./components/Search/SearchCity";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { fetchCities, filterCities } from "./store/actions/cityActions";
 import "./cities.css";
 
-export default class Cities extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cities: [],
-      typedCity: [] //All values stored in this.state.cities
-    };
+class Cities extends Component {
+  
+  componentWillMount() {
+    this.props.fetchCities();
+    this.props.filterCities();
   }
-  componentDidMount() {
-    axios
-      .get("http://localhost:5000/cities/all")
-      .then(res => {
-        console.log(res);
-        this.setState({ cities: res.data });
-        console.log(this.setState);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-  }
-  //Abajo paso el valor ingresado en el child y se lo mando al nuevo estado
-  //representado por filteredCity
-  //Ahora esto tiene que ser llamado por el child, y se hace poniéndolo
-  //como prop searchUpdate={this.searchUpdate.bind(this)}
+
   searchUpdate(search) {
     this.setState({
       typedCity: search
     });
+    console.log(search)
   }
 
   render() {
-    //console.log("filteredCity state del parent", this.state.filteredCity)
 
-    const { cities, typedCity } = this.state;
-    
+    const { cities } = this.props.cities;
+    const { typedCity } = this.props.typedCity;
+
     const filteredCity = cities
       .filter(city => {
         let cityName = city.name.toLowerCase();
         let typedCityName = typedCity.toString().toLowerCase();
-        typedCityName.includes(cityName)
-        return cityName.indexOf(typedCityName) !== -1;
+        return (
+          cityName.indexOf(typedCityName) !== -1 &&
+          //if you cannot find (-1) typedCityName, don't return it
+          (cityName.includes(typedCityName) || !typedCityName) &&
+          cityName.match(typedCityName)
+          //(cityName.includes(typedCityName)|| !typedCityName)
+        );
+        //return cityName.indexOf(typedCityName) !== -1;
       })
       .map(city => {
         return (
@@ -64,11 +56,10 @@ export default class Cities extends Component {
       <div className="cities-list-container">
         <Header />
         <SearchCity
-          filteredCity={this.state.filteredCity}
-          searchUpdate={this.searchUpdate.bind(this)}
+          filteredCity={this.props.filteredCity}
+          filterCities={this.props.filterCities}
+          //searchUpdate={this.searchUpdate.bind(this)}
         />
-        {/*Con esto de arriba llamamos al método que pertenece al child*/}
-        {/*le adjudico el valor del estado resultado de filtrar una búsqueda dada*/}
         <div className="cities-list">{filteredCity}</div>
         <div className="fill"></div>
         <HomeButton />
@@ -77,5 +68,17 @@ export default class Cities extends Component {
   }
 }
 
+Cities.propTypes = {
+  fetchCities: PropTypes.func.isRequired,
+  cities: PropTypes.array.isRequired,
+  filterCities: PropTypes.func.isRequired,
+  typedCity: PropTypes.string.isRequired
+};
 
-//(city.name.toLowerCase().includes(this.state.filteredCities.toString().toLowerCase())
+const mapStateToProps = state => {
+  return {
+    cities: state.cities
+  };
+};
+
+export default connect(mapStateToProps, { fetchCities, filterCities })(Cities);

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./SearchCity.css";
 
 export default class SearchCity extends Component {
+  
   searchUpdate() {
     const search = this.val.value 
     //myValue is the input element, y acá almacenamos localmente ese valor
@@ -23,7 +24,7 @@ export default class SearchCity extends Component {
   }
 
   render() {
-  //console.log("filteredCities value", this.props.filteredCities)
+  console.log("filteredCities value", this.props.filteredCities)
   /*para chequear si hay comunicación parent-child*/
     return (
       <form className="search-form">

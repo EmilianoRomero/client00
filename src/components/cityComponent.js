@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import axios from "axios";
+//import axios from "axios";
 
 export default class city extends Component {
+  /*
   state = {
     city: []
   };
+  
   componentDidMount() {
     let id = this.props.match.params.city_id;
       axios
@@ -19,7 +21,7 @@ export default class city extends Component {
       console.log(error);
     });
   }
-
+*/
   render() {
     const city = this.state.city ? (
       <div className="city">
