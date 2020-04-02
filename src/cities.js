@@ -1,45 +1,24 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import Header from "./screen/Header/Header";
 import HomeButton from "./screen/Footer/HomeButton";
 import SearchCity from "./components/Search/SearchCity";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { fetchCities, filterCities } from "./store/actions/cityActions";
+import { fetchCities, searchCity } from "./store/actions/cityActions";
 import "./cities.css";
 
 class Cities extends Component {
   
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchCities();
-    this.props.filterCities();
-  }
-
-  searchUpdate(search) {
-    this.setState({
-      typedCity: search
-    });
-    console.log(search)
   }
 
   render() {
 
-    const { cities } = this.props.cities;
-    const { typedCity } = this.props.typedCity;
+    const { cities } = this.props;
 
     const filteredCity = cities
-      .filter(city => {
-        let cityName = city.name.toLowerCase();
-        let typedCityName = typedCity.toString().toLowerCase();
-        return (
-          cityName.indexOf(typedCityName) !== -1 &&
-          //if you cannot find (-1) typedCityName, don't return it
-          (cityName.includes(typedCityName) || !typedCityName) &&
-          cityName.match(typedCityName)
-          //(cityName.includes(typedCityName)|| !typedCityName)
-        );
-        //return cityName.indexOf(typedCityName) !== -1;
-      })
       .map(city => {
         return (
           <div className="container-cities" key={city._id}>
@@ -56,9 +35,8 @@ class Cities extends Component {
       <div className="cities-list-container">
         <Header />
         <SearchCity
-          filteredCity={this.props.filteredCity}
-          filterCities={this.props.filterCities}
-          //searchUpdate={this.searchUpdate.bind(this)}
+          //filteredCity={this.props.filteredCity}
+          //filterCities={this.props.filterCities}
         />
         <div className="cities-list">{filteredCity}</div>
         <div className="fill"></div>
@@ -71,14 +49,12 @@ class Cities extends Component {
 Cities.propTypes = {
   fetchCities: PropTypes.func.isRequired,
   cities: PropTypes.array.isRequired,
-  filterCities: PropTypes.func.isRequired,
-  typedCity: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => {
   return {
-    cities: state.cities
+    cities: state.cities.city
   };
 };
 
-export default connect(mapStateToProps, { fetchCities, filterCities })(Cities);
+export default connect(mapStateToProps, { fetchCities, searchCity })(Cities);
