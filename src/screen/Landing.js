@@ -1,10 +1,10 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Arrow from "./Images/circled-right-2.png";
 import Logo from "./Images/MYtineraryLogo.png";
 import Carousel from "./Carousel/Carousel";
 import Slider from "./Carousel/Slider";
 import Header from "./Header/Header";
-import { Link } from "react-router-dom";
 import "./Landing.css";
 
 export default class Landing extends Component {

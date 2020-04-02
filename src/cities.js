@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import Header from "./screen/Header/Header";
 import HomeButton from "./screen/Footer/HomeButton";
 import SearchCity from "./components/Search/SearchCity";
-import PropTypes from "prop-types";
 import { fetchCities, searchCity } from "./store/actions/cityActions";
 import "./cities.css";
 
@@ -35,7 +35,8 @@ class Cities extends Component {
       <div className="cities-list-container">
         <Header />
         <SearchCity
-          //filteredCity={this.props.filteredCity}
+          searchCity={this.props.searchCity}
+          value={this.props.value}
           //filterCities={this.props.filterCities}
         />
         <div className="cities-list">{filteredCity}</div>
@@ -53,7 +54,7 @@ Cities.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    cities: state.cities.city
+    cities: state.cities.cities
   };
 };
 

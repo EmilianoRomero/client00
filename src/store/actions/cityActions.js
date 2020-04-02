@@ -11,10 +11,10 @@ const fetchCitiesRequest = () => {
   };
 };
 
-const fetchCitiesSuccess = json => {
+const fetchCitiesSuccess = cities => {
   return {
     type: FETCH_CITIES_SUCCESS,
-    payload: json
+    payload: cities
   };
 };
 
@@ -32,7 +32,7 @@ export const fetchCities = () => {
       let response = await fetch("http://localhost:5000/cities/all");
       let json = await response.json();
       dispatch(fetchCitiesSuccess(json));
-      console.log(json);
+      //console.log(json);
     } catch (error) {
       dispatch(fetchCitiesFailure(error));
     }
@@ -45,3 +45,16 @@ export const searchCity = value => {
     payload: value
   };
 };
+
+/*
+export const fetchCities = () => dispatch => {
+  fetch("http://localhost:5000/cities/all")
+    .then(res => res.json())
+    .then(cities =>
+      dispatch({
+        type: FETCH_CITIES_SUCCESS,
+        payload: cities
+      })
+    );
+};
+*/
