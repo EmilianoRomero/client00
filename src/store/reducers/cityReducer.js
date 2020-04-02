@@ -1,18 +1,10 @@
-import { SEARCH_CITY, FETCH_CITIES_SUCCESS } from "../actions/types";
-const initCities = [
-  {
-    name: "San Francisco",
-    _id: 1,
-    country: "Country",
-    imgurl: "https://source.unsplash.com/user/loukass23"
-  },
-  {
-    name: "Paris",
-    _id: 2,
-    country: "Country",
-    imgurl: "https://source.unsplash.com/user/loukass23"
-  },
-]
+import {
+  SEARCH_CITY,
+  FETCH_CITIES_SUCCESS
+} from "../actions/types";
+
+const initCities = []
+
 const initialState = {
   searchValue: "",
   filteredCities: initCities,
@@ -23,10 +15,9 @@ export default function cityReducer(state = initialState, action) {
   switch (action.type) {
     case SEARCH_CITY: {
       const searchValue = action.payload;
-      console.log('searchValue :', searchValue);
       const filteredCities = state.cities.filter(
         city =>
-          city.name.toString().toLowerCase().includes(searchValue)
+        city.name.toString().toLowerCase().includes(searchValue)
       );
       return {
         ...state,

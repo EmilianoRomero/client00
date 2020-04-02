@@ -32,7 +32,7 @@ export const fetchCities = () => {
       let response = await fetch("http://localhost:5000/cities/all");
       let json = await response.json();
       dispatch(fetchCitiesSuccess(json));
-      //console.log(json);
+      
     } catch (error) {
       dispatch(fetchCitiesFailure(error));
     }

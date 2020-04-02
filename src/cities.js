@@ -9,20 +9,18 @@ import { fetchCities, searchCity } from "./store/actions/cityActions";
 import "./cities.css";
 
 class Cities extends Component {
-
   componentDidMount() {
     this.props.fetchCities();
   }
 
   render() {
-
     const { filteredCities } = this.props;
     const filteredCity = filteredCities.map(city => {
       return (
         <div className="container-cities" key={city._id}>
           <div className="cities">
-            <h4>{city.name}</h4>
             <Link to={"/:" + city._id}>
+              {/*<h4>{city.name}</h4>*/}
               <img className="cities-img" src={city.imgurl} alt="" />
             </Link>
           </div>
@@ -36,7 +34,6 @@ class Cities extends Component {
         <SearchCity
           searchCity={this.props.searchCity}
           value={this.props.value}
-        //filterCities={this.props.filterCities}
         />
         {/* check for data before mapping */}
         {filteredCity && <div className="cities-list">{filteredCity}</div>}
@@ -50,11 +47,10 @@ class Cities extends Component {
 Cities.propTypes = {
   fetchCities: PropTypes.func.isRequired,
   cities: PropTypes.array.isRequired,
-  filteredCities: PropTypes.array.isRequired,
+  filteredCities: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => {
-
   return {
     filteredCities: state.cities.filteredCities
   };
