@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { searchCity }  from "/Users/trancecyberian/Desktop/UBIQUM/01Projects/MERN/fsd/client00/src/store/actions/cityActions";
+import { searchCity } from "../../store/actions/cityActions";
 import "./SearchCity.css";
 
 class SearchCity extends Component {
   render() {
-    const { searchCity, value } = this.props;
+    const { searchCity, searchValue } = this.props;
 
     return (
       <form className="search-form">
         <input
           className="search-box"
           placeholder={"search your city!"}
-          value={value}
+          value={searchValue}
           onChange={e => searchCity(e.target.value)}
         ></input>
       </form>
@@ -21,10 +21,13 @@ class SearchCity extends Component {
   }
 }
 
-function mapStateToProps({ cities }) {
-  return { value: cities.value };
-}
 
+const mapStateToProps = state => {
+  console.log('state', state)
+  return {
+    searchValue: state.cities.searchValue
+  };
+};
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ searchCity }, dispatch);
 }

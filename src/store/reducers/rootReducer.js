@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import fetchingReducer from "./fetchingReducer";
-import searchCityReducer from "./searchCityReducer";
+import cityReducer from "./cityReducer";
 
 const rootReducer = combineReducers({
-  cities: fetchingReducer,
-  value: searchCityReducer
+  cities: cityReducer,
+
 });
 
 export default rootReducer;
