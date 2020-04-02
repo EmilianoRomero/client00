@@ -39,10 +39,10 @@ export const fetchCities = () => {
   };
 };
 
-export const searchCity = value => {
+export const searchCity = searchValue => {
   return {
     type: SEARCH_CITY,
-    payload: value
+    payload: searchValue
   };
 };
 
