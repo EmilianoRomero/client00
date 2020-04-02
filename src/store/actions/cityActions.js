@@ -45,16 +45,3 @@ export const searchCity = searchValue => {
     payload: searchValue
   };
 };
-
-/*
-export const fetchCities = () => dispatch => {
-  fetch("http://localhost:5000/cities/all")
-    .then(res => res.json())
-    .then(cities =>
-      dispatch({
-        type: FETCH_CITIES_SUCCESS,
-        payload: cities
-      })
-    );
-};
-*/

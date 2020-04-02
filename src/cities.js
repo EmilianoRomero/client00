@@ -46,7 +46,6 @@ class Cities extends Component {
 
 Cities.propTypes = {
   fetchCities: PropTypes.func.isRequired,
-  cities: PropTypes.array.isRequired,
   filteredCities: PropTypes.array.isRequired
 };
 
