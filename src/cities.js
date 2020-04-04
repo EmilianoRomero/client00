@@ -15,11 +15,11 @@ class Cities extends Component {
 
   render() {
     const { filteredCities } = this.props;
-    const filteredCity = filteredCities.map(city => {
+    const filteredCity = filteredCities.map((city, itinerary) => {
       return (
         <div className="container-cities" key={city._id}>
           <div className="cities">
-            <Link to={"/:" + city._id}>
+            <Link to={"/itineraries/:" + itinerary.city}>
               {/*<h4>{city.name}</h4>*/}
               <img className="cities-img" src={city.imgurl} alt="" />
             </Link>

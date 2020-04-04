@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Landing from "./screen/Landing";
 import Cities from "./cities";
-import City from "./components/cityComponent";
+import Itineraries from "./components/Itinerary";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 
@@ -13,7 +13,7 @@ export default class App extends Component {
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route path="/cities" component={Cities} />
-            <Route path="/:city_id" component={City} />
+            <Route path="/itineraries/:city" component={Itineraries} />
           </Switch>
         </div>
       </BrowserRouter>

@@ -14,20 +14,20 @@ class SearchCity extends Component {
           className="search-box"
           placeholder={"search your city!"}
           value={searchValue}
-          onChange={e => searchCity(e.target.value)}
+          onChange={(e) => searchCity(e.target.value)}
         ></input>
       </form>
     );
   }
 }
 
-
-const mapStateToProps = state => {
-  console.log('state', state)
+const mapStateToProps = (state) => {
+  console.log("state", state);
   return {
-    searchValue: state.cities.searchValue
+    searchValue: state.cities.searchValue,
   };
 };
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ searchCity }, dispatch);
 }

@@ -1,0 +1,65 @@
+.container-itineraries-list {
+    padding: 0;
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    grid-template-rows: 95% 0.5% 4.5%;
+    grid-template-areas:
+        "itineraries-list"
+        "fill"
+        "home";
+}
+
+.itineraries-list {
+    padding: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: space-around;
+    align-items: center;
+    overflow: scroll;
+    /*hidden*/
+    position: relative;
+}
+
+.container-itinerary {
+    padding: 0;
+    width: 820px;
+    height: 460px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-around;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.itinerary {
+    padding: 0;
+    width: 820px;
+    height: 460px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-around;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.itinerary-img {
+    width: 800px;
+    height: 450px;
+    border: 10px solid tomato;
+    border-radius: 8px;
+    object-fit: cover;
+    position: relative;
+    cursor: pointer;
+}
+
