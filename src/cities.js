@@ -19,7 +19,7 @@ class Cities extends Component {
       return (
         <div className="container-cities" key={city._id}>
           <div className="cities">
-            <Link to={"/itineraries/:" + itinerary.city}>
+            <Link to={"/itineraries/" + itinerary.city}>
               {/*<h4>{city.name}</h4>*/}
               <img className="cities-img" src={city.imgurl} alt="" />
             </Link>

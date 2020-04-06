@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import HomeButton from "../screen/Footer/HomeButton";
@@ -8,7 +8,7 @@ import "./Itinerary.css";
 
 class Itineraries extends Component {
   componentDidMount() {
-    this.props.fetchItineraries(this.props.match.params.city);
+    this.props.fetchItineraries();
   }
 
   render() {
@@ -17,9 +17,9 @@ class Itineraries extends Component {
       return (
         <div className="container-itinerary" key={itinerary._id}>
           <div className="itinerary">
-            {/*<Link to={"/:" + itinerary.city}>*/}
+            <Link to={"/:" + itinerary.title}>
             <img className="itinerary-img" src={itinerary.imgurl} alt="" />
-            {/*</Link>*/}
+            </Link>
           </div>
         </div>
       );
@@ -49,4 +49,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchItineraries })(Itineraries);
+const mapDispatchToProps = (dispatch) => ({
+  fetchItineraries: () => dispatch(fetchItineraries)
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Itineraries);

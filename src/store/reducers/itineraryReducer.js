@@ -1,18 +1,18 @@
 import { FETCH_ITINERARIES_SUCCESS } from "../actions/types";
 
-const itineraries = [];
+//const itineraries = [];
 
 const initialState = {
-  itineraries,
+  itineraries: []
 };
 
 export default function itineraryReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_ITINERARIES_SUCCESS: {
-      const itineraries = action.payload;
+      //const itineraries = action.payload;
       return {
         ...state,
-        itineraries,
+        itineraries: action.itineraries
       };
     }
     default:
