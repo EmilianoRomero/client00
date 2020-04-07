@@ -24,12 +24,13 @@ const fetchItinerariesFailure = (error) => {
   };
 };
 
-export const fetchItineraries = (itinerary) => { //itinerary and then + itinerary.city? //this.props.params.city
+export const fetchItineraries = (city) => { //está bien pasar la ciudad como parámetro acá
   return async (dispatch) => {
-    dispatch(fetchItinerariesRequest(itinerary));
+    dispatch(fetchItinerariesRequest(city));
     try {
-      let response = await fetch("http://localhost:5000/itineraries/" + itinerary.city); //DUDAS
+      let response = await fetch("http://localhost:5000/itineraries/" + city);
       let json = await response.json();
+      console.log(json);
       dispatch(fetchItinerariesSuccess(json));
     } catch (error) {
       dispatch(fetchItinerariesFailure(error));

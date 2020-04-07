@@ -51,3 +51,13 @@
     cursor: pointer;
 }
 
+.city-name {
+    position: relative;
+    font-size: 96px;
+    color: tomato;
+    justify-self: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+
