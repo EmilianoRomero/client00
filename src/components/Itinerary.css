@@ -16,6 +16,7 @@
     width: 100%;
     height: auto;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     justify-content: flex-start;
     align-content: space-around;
@@ -37,117 +38,4 @@
     overflow: scroll;
     /*hidden*/
     position: relative;
-}
-
-.itinerary {
-    border-radius: 10px;
-    border-color: tomato;
-    border-style: solid;
-    border-width: 8px;
-    font-size: 150%;
-    padding: 0;
-    margin: 0;
-    width: 840px;
-    height: 220px;
-    display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
-    grid-template-rows: 25% 25% 25% 25%;
-    overflow: hidden;
-}
-
-.itinerary-profile-img-container,
-.itinerary-profile-img {
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 4;
-}
-.itinerary-profile-img-container {
-    margin: 0;
-    padding: 0;
-    margin-top: 10px;
-    margin-left: 15px;
-    width: 100%;
-    height: auto;
-    position: relative;
-    
-}
-
-.itinerary-profile-img {
-    width: 125px;
-    height: 125px;
-    object-fit: cover;
-    position: absolute;
-    border-radius: 50%;
-    border-color: tomato;
-    border-style: solid;
-    border-width: 8px;
-}
-
-h2.itinerary-title {
-    grid-column-start: 2;
-    grid-column-end: span 4;
-    grid-row-start: 1;
-    grid-row-end: span 1;
-}
-
-p.itinerary-likes {
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 2;
-    grid-row-end: 3;
-}
-
-p.itinerary-duration {
-    grid-column-start: 3;
-    grid-column-end: 4;
-    grid-row-start: 2;
-    grid-row-end: 3;
-}
-
-p.itinerary-price {
-    grid-column-start: 4;
-    grid-column-end: span 4;
-    grid-row-start: 2;
-    grid-row-end: 3;
-}
-
-p.itinerary-hashtags {
-    grid-column-start: 2;
-    grid-column-end: span 4;
-    grid-row-start: 3;
-    grid-row-end: 4;
-}
-
-h3.flap-content {
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row-start: 4;
-    grid-row-end: span 4;
-}
-
-h2.itinerary-title,
-p.itinerary-likes,
-p.itinerary-duration,
-p.itinerary-price,
-p.itinerary-hashtags {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-content: space-evenly;
-    align-self: stretch;
-    overflow: scroll;
-}
-
-h3.flap-content {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-content: space-evenly;
-    align-self: stretch;
-    overflow: scroll;
 }
