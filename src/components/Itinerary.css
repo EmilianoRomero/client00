@@ -11,31 +11,16 @@
         "back-home"
 }
 
-.container-itinerary {
-    padding: 0;
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-content: space-around;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-}
-
 .itineraries-list {
     padding: 0;
     width: 100%;
     height: auto;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-content: space-around;
+    justify-content: center;
+    align-content: flex-start;
     align-items: center;
-    overflow: scroll;
-    /*hidden*/
     position: relative;
+    overflow: hidden;
 }

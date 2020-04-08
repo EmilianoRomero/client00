@@ -16,9 +16,7 @@ class Itineraries extends Component {
   generateItinerariesList() {
     let itinerariesList = this.props.itineraries.map((itinerary) => {
       return (
-        <div key={itinerary._id}>
-          <Activities itinerary={itinerary}></Activities>
-        </div>
+          <Activities itinerary={itinerary} key={itinerary._id}></Activities>
       );
     });
     return itinerariesList;
@@ -45,14 +43,12 @@ generateItinerariesHeader() {
       <div className="container-itineraries-list">
         <div className="itineraries-header">Cointainer dynamic image of the city</div>
         <div className="header-itinerary-text" />
-        <div className="container-itinerary">
           {/* check for data before mapping!!! */}
           {itinerariesList && (
             <div className="itineraries-list">
               {this.generateItinerariesList()}
             </div>
           )}
-        </div>
         <HomeButton />
       </div>
     );
