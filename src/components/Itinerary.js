@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import HomeButton from "../screen/Footer/HomeButton";
 import { fetchItineraries } from "../store/actions/itineraryActions";
+import "normalize.css";
 import "./Itinerary.css";
 import Activities from "./Activities";
 

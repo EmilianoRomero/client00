@@ -6,6 +6,7 @@ import Header from "./screen/Header/Header";
 import HomeButton from "./screen/Footer/HomeButton";
 import SearchCity from "./components/Search/SearchCity";
 import { fetchCities, searchCity } from "./store/actions/cityActions";
+import "normalize.css";
 import "./cities.css";
 
 class Cities extends Component {
