@@ -17,8 +17,8 @@ export default class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route path="/cities" component={Cities} />
             <Route path="/itineraries/:city" component={Itineraries} />
-            <Route path="/register" component={SignUp} />
-            <Route path="/login" component={LogIn} />
+            <Route path="/users/register" component={SignUp} />
+            <Route path="/users/login" component={LogIn} />
           </Switch>
         </div>
       </BrowserRouter>

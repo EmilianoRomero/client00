@@ -1,9 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/css/bootstrap.css";
-import "normalize.css";
-import "./index.css";
 import App from "./App";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { createStore, applyMiddleware } from "redux"; //
@@ -11,6 +7,10 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk"; //Middleware
 import rootReducer from "./store/reducers/rootReducer";
 import * as serviceWorker from "./serviceWorker";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.css";
+import "normalize.css";
+import "./index.css";
 
 const store = createStore(
   rootReducer,
