@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { searchCity } from "../../store/actions/cityActions";
+import { searchCity } from "../store/actions/cityActions";
 import "./SearchCity.css";
 
 class SearchCity extends Component {

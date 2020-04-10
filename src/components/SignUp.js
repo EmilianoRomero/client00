@@ -1,11 +1,11 @@
-/*
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { withRouter } from "react-router-dom"; //Link,
 import PropTypes from "prop-types";
-import { signUp } from '../src/store/actions/userAction.js'
+import { connect } from "react-redux";
+import { registerUser } from "../src/store/actions/authActions.js";
 import Header from "./screen/Header/Header";
 import HomeButton from "./screen/Footer/HomeButton";
+import classnames from "classnames";
 import "normalize.css";
 import "./index.css";
 
@@ -13,283 +13,154 @@ class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      countries: [
-        "Afghanistan",
-        "Albania",
-        "Algeria",
-        "Andorra",
-        "Angola",
-        "Antigua and Barbuda",
-        "Argentina",
-        "Armenia",
-        "Australia",
-        "Austria",
-        "Azerbaijan",
-        "Bahamas",
-        "Bahrain",
-        "Bangladesh",
-        "Barbados",
-        "Belarus",
-        "Belgium",
-        "Belize",
-        "Benin",
-        "Bhutan",
-        "Bolivia",
-        "Bosnia and Herzegovina",
-        "Botswana",
-        "Brazil",
-        "Brunei",
-        "Bulgaria",
-        "Burkina Faso",
-        "Burundi",
-        "Cambodia",
-        "Cameroon",
-        "Canada",
-        "Cape Verde",
-        "Central African Republic",
-        "Chad",
-        "Chile",
-        "China",
-        "Colombi",
-        "Comoros",
-        "Congo (Brazzaville)",
-        "Congo",
-        "Costa Rica",
-        "Cote d'Ivoire",
-        "Croatia",
-        "Cuba",
-        "Cyprus",
-        "Czech Republic",
-        "Denmark",
-        "Djibouti",
-        "Dominica",
-        "Dominican Republic",
-        "East Timor (Timor Timur)",
-        "Ecuador",
-        "Egypt",
-        "El Salvador",
-        "Equatorial Guinea",
-        "Eritrea",
-        "Estonia",
-        "Ethiopia",
-        "Fiji",
-        "Finland",
-        "France",
-        "Gabon",
-        "Gambia, The",
-        "Georgia",
-        "Germany",
-        "Ghana",
-        "Greece",
-        "Grenada",
-        "Guatemala",
-        "Guinea",
-        "Guinea-Bissau",
-        "Guyana",
-        "Haiti",
-        "Honduras",
-        "Hungary",
-        "Iceland",
-        "India",
-        "Indonesia",
-        "Iran",
-        "Iraq",
-        "Ireland",
-        "Israel",
-        "Italy",
-        "Jamaica",
-        "Japan",
-        "Jordan",
-        "Kazakhstan",
-        "Kenya",
-        "Kiribati",
-        "Korea, North",
-        "Korea, South",
-        "Kuwait",
-        "Kyrgyzstan",
-        "Laos",
-        "Latvia",
-        "Lebanon",
-        "Lesotho",
-        "Liberia",
-        "Libya",
-        "Liechtenstein",
-        "Lithuania",
-        "Luxembourg",
-        "Macedonia",
-        "Madagascar",
-        "Malawi",
-        "Malaysia",
-        "Maldives",
-        "Mali",
-        "Malta",
-        "Marshall Islands",
-        "Mauritania",
-        "Mauritius",
-        "Mexico",
-        "Micronesia",
-        "Moldova",
-        "Monaco",
-        "Mongolia",
-        "Morocco",
-        "Mozambique",
-        "Myanmar",
-        "Namibia",
-        "Nauru",
-        "Nepal",
-        "Netherlands",
-        "New Zealand",
-        "Nicaragua",
-        "Niger",
-        "Nigeria",
-        "Norway",
-        "Oman",
-        "Pakistan",
-        "Palau",
-        "Panama",
-        "Papua New Guinea",
-        "Paraguay",
-        "Peru",
-        "Philippines",
-        "Poland",
-        "Portugal",
-        "Qatar",
-        "Romania",
-        "Russia",
-        "Rwanda",
-        "Saint Kitts and Nevis",
-        "Saint Lucia",
-        "Saint Vincent",
-        "Samoa",
-        "San Marino",
-        "Sao Tome and Principe",
-        "Saudi Arabia",
-        "Senegal",
-        "Serbia and Montenegro",
-        "Seychelles",
-        "Sierra Leone",
-        "Singapore",
-        "Slovakia",
-        "Slovenia",
-        "Solomon Islands",
-        "Somalia",
-        "South Africa",
-        "Spain",
-        "Sri Lanka",
-        "Sudan",
-        "Suriname",
-        "Swaziland",
-        "Sweden",
-        "Switzerland",
-        "Syria",
-        "Taiwan",
-        "Tajikistan",
-        "Tanzania",
-        "Thailand",
-        "Togo",
-        "Tonga",
-        "Trinidad and Tobago",
-        "Tunisia",
-        "Turkey",
-        "Turkmenistan",
-        "Tuvalu",
-        "Uganda",
-        "Ukraine",
-        "United Arab Emirates",
-        "United Kingdom",
-        "United States",
-        "Uruguay",
-        "Uzbekistan",
-        "Vanuatu",
-        "Vatican City",
-        "Venezuela",
-        "Vietnam",
-        "Yemen",
-        "Zambia",
-        "Zimbabwe",
-      ],
+      username: "",
+      email: "",
+      password: "",
+      password2: "",
+      firstname: "",
+      lastname: "",
+      errors: {},
     };
   }
 
-  handleCheckBox = () => {
-    this.setState({ checked: !this.state.checked });
+  componentDidMount() {
+    // If logged in and user navigates to Register page, should redirect them to dashboard
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors,
+      });
+    }
+  }
+
+  onChange = (e) => {
+    this.setState({ [e.target.id]: e.target.value });
   };
 
-  handleSubmit = (e) => {
+  onSubmit = (e) => {
     e.preventDefault();
-    // console.log(this.state);
 
-    let newUser = {
-      signUpUsername: e.target.signUpUsername.value,
-      signUpPassword: e.target.signUpPassword.value,
-      signUpEmail: e.target.signUpEmail.value,
-      signUpFirstName: e.target.signUpFirstName.value,
-      signUpLastName: e.target.signUpLastName.value,
-      signUpCountry: e.target.signUpCountry.value,
-      checked: e.target.checked.value,
+    const newUser = {
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password,
+      password2: this.state.password2,
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
+      //signUpCountry: e.target.signUpCountry.value,
+      //checked: e.target.checked.value,
     };
-    console.log(newUser);
-    if (this.props.signUp(newUser)) {
-    }
+
+    this.props.registerUser(newUser, this.props.history);
   };
 
   render() {
+    const { errors } = this.state;
+
     return (
-      <div className="sign-up-container">
+      <div className="signup-container">
         <Header />
 
         <div className="form-container">
           <h3 className="line1-title">Create your MYtinerary Account</h3>
 
-          <div className="line2-addphoto"></div>
-
-          <form onSubmit={(e) => this.handleSubmit(e)}>
-
-            <div className="line3-username">
-              <p>Username: </p>
+          <form noValidate onSubmit={this.onSubmit}>
+            <div className="line2-username">
+              <label htmlFor="username">User name: </label>
               <input
+                className={classnames("", {
+                  invalid: errors.username,
+                })}
                 type="text"
+                id="username"
                 placeholder="enter username"
-                name="signUpUsername"
+                onChange={this.onChange}
+                value={this.state.username}
+                error={errors.username}
               />
+              <span className="red-text">{errors.username}</span>
+            </div>
+
+            <div className="line3-email">
+              <label htmlFor="email">e-mail: </label>
+              <input
+                className={classnames("", {
+                  invalid: errors.email,
+                })}
+                type="email"
+                id="email"
+                placeholder="enter valid e-mail"
+                onChange={this.onChange}
+                value={this.state.email}
+                error={errors.email}
+              />
+              <span className="red-text">{errors.email}</span>
             </div>
 
             <div className="line4-password">
-              <p>Password: </p>
+              <label htmlFor="password">Password: </label>
               <input
+                className={classnames("", {
+                  invalid: errors.password,
+                })}
                 type="password"
-                placeholder="enter password"
-                name="signUpPassword"
+                id="password"
+                placeholder="enter valid password"
+                onChange={this.onChange}
+                value={this.state.password}
+                error={errors.password}
               />
+              <span className="red-text">{errors.password}</span>
             </div>
 
-            <div className="line5-email">
-              <p>Email: </p>
+            <div className="line5-password2">
+              <label htmlFor="password">Confirm Password: </label>
               <input
-                type="email"
-                placeholder="enter valid e-mail"
-                name="signUpEmail"
+                className={classnames("", {
+                  invalid: errors.password2,
+                })}
+                type="password"
+                id="password2"
+                placeholder="confirm password"
+                onChange={this.onChange}
+                value={this.state.password2}
+                error={errors.password2}
               />
+              <span className="red-text">{errors.password2}</span>
             </div>
 
             <div className="line6-firstname">
-              <p>First Name: </p>
+              <label htmlFor="firstname">First Name: </label>
               <input
                 type="text"
-                placeholder="enter first Name"
-                name="signUpFirstName"
+                id="firstname"
+                placeholder="enter your first name"
+                onChange={this.onChange}
+                value={this.state.firstname}
+                //error={errors.firstname}
               />
             </div>
 
             <div className="line7-lastname">
-              <p>Last Name: </p>
+              <label htmlFor="lastname">Last Name: </label>
               <input
                 type="text"
-                placeholder="enter last Name"
-                name="signUpLastName"
+                id="lastname"
+                placeholder="enter your last name"
+                onChange={this.onChange}
+                value={this.state.lastname}
+                //error={errors.lastname}
               />
             </div>
 
+            <div className="line8-addphoto"></div>
+
+            {/*
             <div className="line8-country">
               <p>Country: </p>
               <select name="signUpCountry">
@@ -301,15 +172,19 @@ class SignUp extends Component {
                 ))}
               </select>
             </div>
+            */}
 
+            {/*
             <div className="line9-checkbox">
               <input
                 className=" inputCheckbox"
                 type="checkbox"
                 name="checked"
               />
+            */}
 
-              <h6 className="line10-text">
+            {/*
+              <h6 className="line9-text">
                 I agree to MYtinerary's
                 <Link className="terms_conditions" to="/terms_conditions">
                   Terms & Conditions
@@ -317,9 +192,13 @@ class SignUp extends Component {
                 .
               </h6>
             </div>
+            */}
 
-            <button className="line11-submit">Submit</button>
+            <button className="line9-submit" id="submit-button" type="submit">
+              Sign up
+            </button>
           </form>
+
           <HomeButton />
         </div>
       </div>
@@ -327,11 +206,14 @@ class SignUp extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    signUp: (newUser) => dispatch(signUp(newUser)),
-  };
+SignUp.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
 };
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors,
+});
 
-export default connect(null, mapDispatchToProps)(SignUp);
-*/
+export default connect(mapStateToProps, { registerUser })(withRouter(SignUp));

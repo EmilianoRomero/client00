@@ -1,19 +1,19 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./LoginLink.css";
 
 export default class LoginLink extends Component {
   render() {
     return (
       <div className="login">
-        <NavLink
+        <Link
           exact
-          to="/"
+          to="/users/login"
           className="login-link"
           activeClassName="login-link-active"
         >
           Log in
-        </NavLink>
+        </Link>
       </div>
     );
   }

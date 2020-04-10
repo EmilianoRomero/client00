@@ -1,10 +1,15 @@
 import React, { Component } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
 import Landing from "./screen/Landing";
 import Cities from "./cities";
 import Itineraries from "./components/Itinerary";
 import SignUp from "./components/SignUp";
 import LogIn from "./components/LogIn";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+
+import PrivateRoute from "./components/PrivateRoute";
+import Dashboard from "./components/Dashboard";
+
 import "normalize.css";
 import "./App.css";
 
@@ -19,6 +24,7 @@ export default class App extends Component {
             <Route path="/itineraries/:city" component={Itineraries} />
             <Route path="/users/register" component={SignUp} />
             <Route path="/users/login" component={LogIn} />
+            <PrivateRoute exact path="/dashboard" component={Dashboard} />
           </Switch>
         </div>
       </BrowserRouter>
