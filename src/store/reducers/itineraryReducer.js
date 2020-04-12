@@ -1,7 +1,5 @@
 import { FETCH_ITINERARIES_SUCCESS } from "../actions/types";
 
-//const itineraries = [];
-
 const initialState = {
   itineraries: []
 };

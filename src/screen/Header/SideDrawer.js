@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./SideDrawer.css";
 
 //Acá manejo los estados T/F con una clase nueva (la clase Si está abierta)
-const SideDrawer = props => {
+const SideDrawer = (props) => {
   //Tengo mi clase original y una nueva (drawer abierto)
   //La clase se le agrega como array. La propiedad es show.
   //Si show es T, entonces que se adicione al array con la clase original
@@ -16,17 +17,17 @@ const SideDrawer = props => {
     <nav className=/*"side-drawer" not anymore*/ {drawerClasses}>
       <ul>
         <li>
-          <a href="/">Option 1</a>
+          <Link to="">Option 1</Link>
         </li>
         <li>
-          <a href="/">Option 2</a>
+          <Link to="">Option 2</Link>
         </li>
         <li>
-          <a href="/">Option 2</a>
+          <Link to="">Option 3</Link>
         </li>
       </ul>
     </nav>
   );
-}
+};
 
 export default SideDrawer;

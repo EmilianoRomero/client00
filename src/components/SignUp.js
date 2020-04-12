@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom"; //Link,
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { registerUser } from "../src/store/actions/authActions.js";
-import Header from "./screen/Header/Header";
-import HomeButton from "./screen/Footer/HomeButton";
+import { registerUser } from "../store/actions/authActions.js";
+//import OtherHeader from "../screen/Header/Header";
+import HomeButton from "../screen/Footer/HomeButton";
 import classnames from "classnames";
 import "normalize.css";
-import "./index.css";
+import "../index.css";
 
 class SignUp extends Component {
   constructor(props) {
@@ -51,9 +51,7 @@ class SignUp extends Component {
       password: this.state.password,
       password2: this.state.password2,
       firstname: this.state.firstname,
-      lastname: this.state.lastname,
-      //signUpCountry: e.target.signUpCountry.value,
-      //checked: e.target.checked.value,
+      lastname: this.state.lastname
     };
 
     this.props.registerUser(newUser, this.props.history);
@@ -64,7 +62,7 @@ class SignUp extends Component {
 
     return (
       <div className="signup-container">
-        <Header />
+        {/*<OtherHeader />*/}
 
         <div className="form-container">
           <h3 className="line1-title">Create your MYtinerary Account</h3>
@@ -158,7 +156,7 @@ class SignUp extends Component {
               />
             </div>
 
-            <div className="line8-addphoto"></div>
+            <div className="line8-avatarpicture"></div>
 
             {/*
             <div className="line8-country">
@@ -209,7 +207,7 @@ class SignUp extends Component {
 SignUp.propTypes = {
   registerUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired, //form. .object.
 };
 const mapStateToProps = (state) => ({
   auth: state.auth,

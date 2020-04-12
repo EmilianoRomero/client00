@@ -7,7 +7,6 @@ export default class RegisterLink extends Component {
     return (
       <div className="register">
         <Link
-          exact
           to="/users/register"
           className="register-link"
           activeClassName="register-link-active"

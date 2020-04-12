@@ -4,21 +4,18 @@ import Arrow from "./Images/circled-right-2.png";
 import Logo from "./Images/MYtineraryLogo.png";
 import Carousel from "./Carousel/Carousel";
 import Slider from "./Carousel/Slider";
-import Header from "./Header/Header";
+import HeaderLanded from "./Header/HeaderLanded";
 import "./Landing.css";
 
-//WHEN EVERYTHING IS IMPLEMENTED THIS WILL CONTAIN ONLY
-//THE LOGIN AND CREATE ACCOUNT FUNCTIONALITY
-//THE REST OF THE COMPONENTS WILL BE OUT
-
-export default class Landing extends Component {
+export default class AppLanded extends Component {
   
   render() {
     
     return (
       <div>
         <div className="main-container-fluid" id="main-container-fluid">
-          <Header />
+          <HeaderLanded />
+          {/*EL MENÚ ESTÁ COMENTADO EN SUS COMPONENTES*/}
           <div className="logo">
             <img className="logoImg" src={Logo} alt="" />
           </div>
@@ -29,6 +26,7 @@ export default class Landing extends Component {
             </h2>
           </div>
           <div className="start">
+            {/*DESACTIVAR FLECHA CUANDO ESTE FINALIZADO*/}
             <Link className="arrow" to="/cities">
               <img className="arrowImg" src={Arrow} alt="" />
             </Link>

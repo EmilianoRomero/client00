@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-//import Menu from "../Header/Menu";
-//import SideDrawer from "../Header/SideDrawer";
-//import Backdrop from "../Header/Backdrop";
-import LoginRegModal from "../Header/LoginRegModal";
+import Menu from "../Header/Menu";
+import SideDrawer from "../Header/SideDrawer";
+import Backdrop from "../Header/Backdrop";
+import LogOutModal from "../Header/LogOutModal";
 import "./Header.css";
 
-export default class Header extends Component {
+export default class HeaderLanded extends Component {
 
   state = {
     sideDrawerOpen: false
@@ -22,18 +22,18 @@ export default class Header extends Component {
   };
 
   render() {
-    /*
+
     let backdrop;
     if (this.state.sideDrawerOpen) {
       backdrop = <Backdrop click={this.backdropClickHandler} />;
     }
-*/
+
     return (
       <div className="header">
-        <LoginRegModal />
-        {/*<Menu drawerClickHandler={this.drawerToggleClickHandler} />*/}
-        {/*<SideDrawer show={this.state.sideDrawerOpen} />*/}
-        {/*{backdrop}*/}
+        <LogOutModal />
+        <Menu drawerClickHandler={this.drawerToggleClickHandler} />
+        <SideDrawer show={this.state.sideDrawerOpen} />
+        {backdrop}
       </div>
     );
   }

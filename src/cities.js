@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import Header from "./screen/Header/Header";
+//import OtherHeader from "./screen/Header/Header";
 import HomeButton from "./screen/Footer/HomeButton";
 import SearchCity from "./components/SearchCity";
 import { fetchCities, searchCity } from "./store/actions/cityActions";
@@ -33,7 +33,7 @@ class Cities extends Component {
 
     return (
       <div className="cities-list-container">
-        <Header />
+        {/*<Header />*/}
         <SearchCity
           searchCity={this.props.searchCity}
           value={this.props.value}

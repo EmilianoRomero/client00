@@ -7,7 +7,6 @@ export default class LoginLink extends Component {
     return (
       <div className="login">
         <Link
-          exact
           to="/users/login"
           className="login-link"
           activeClassName="login-link-active"

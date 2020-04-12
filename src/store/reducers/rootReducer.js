@@ -1,14 +1,14 @@
 import { combineReducers } from "redux";
 import cityReducer from "./cityReducer";
 import itineraryReducer from "./itineraryReducer";
-import authReducer from "./authReducer";
-import errorReducer from "./errorReducer";
+import authReducer from "./authReducers";
+import errorReducer from "./errorReducers";
 
 const rootReducer = combineReducers({
   cities: cityReducer,
   itineraries: itineraryReducer,
   auth: authReducer,
-  errors: errorReducer
+  errors: errorReducer,
 });
 
 export default rootReducer;
