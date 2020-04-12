@@ -7,7 +7,8 @@ import { loginUser } from "../store/actions/authActions.js";
 import HomeButton from "../screen/Footer/HomeButton";
 import classnames from "classnames";
 import "normalize.css";
-import "../index.css";
+import "./Login.css";
+import { Link } from "react-router-dom";
 
 class Login extends Component {
   constructor() {
@@ -19,19 +20,10 @@ class Login extends Component {
     };
   }
 
-  /* PARA REDIRIGIR AL DASHBOARD -CONTIENE AL LOG OUT-
-  1) SI EL USUARIO ESTÁ LOGIN Y VUELVE A CLICAR LOGIN
-  componentDidMount() {
-    // If logged in and user navigates to Login page, should redirect them to dashboard
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
-    }
-  }
-
-  2) INMEDIATAMENTE DESPUÉS DE LOGIN
+// push user to /app when they login
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/dashboard"); // push user to dashboard when they login
+      this.props.history.push("/app"); 
     }
     if (nextProps.errors) {
       this.setState({
@@ -39,7 +31,7 @@ class Login extends Component {
       });
     }
   }
-*/
+
 
   onChange = (e) => {
     this.setState({ [e.target.id]: e.target.value });
@@ -57,6 +49,8 @@ class Login extends Component {
     // since we handle the redirect within our component,
     //we don't need to pass in this.props.history as a parameter
   };
+
+
 
   render() {
     const { errors } = this.state;
@@ -109,9 +103,11 @@ class Login extends Component {
             <button className="line4-login" id="login-button" type="submit">
               Login
             </button>
-            <button className="line5-login" id="google-login-button" type="submit">
-              Login with google
+            <Link>
+            <button className="line5-google-btn" id="google-login-button" to="/auth/google" type="submit">
+              Google
             </button>
+            </Link>
           </form>
 
           <HomeButton />

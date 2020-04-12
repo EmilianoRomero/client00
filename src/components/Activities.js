@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 //import { NavLink } from "react-router-dom";
+import { addFav } from "../store/actions/authActions"
 import "normalize.css";
 import "./Activities.css";
 
@@ -11,7 +12,16 @@ class Activities extends Component {
       open: false,
       button: true,
     };
-    //this.handleClick = this.handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    const { itinerary } = this.props;
+
+    this.setState({
+      button: !this.state.button,
+    });
+    this.props.addFav(itinerary._id);
   }
 
   toggle = () => {
@@ -52,8 +62,16 @@ class Activities extends Component {
             </div>
           </div>
           <div className="right">
-            <div className="line-1">
+            <div className="line-1left">
               <h2 className="itinerary-title">{itinerary.title}</h2>
+            </div>
+            <div className="line-1right">
+              <button
+                className={this.state.button ? "buttonTrue" : "buttonFalse"}
+                onClick={this.handleClick}
+              >
+                Like
+              </button>
             </div>
             <div className="line-2">
               <p className="itinerary-likes">{"Likes: " + itinerary.likes}</p>
@@ -89,7 +107,12 @@ class Activities extends Component {
 const mapStateToProps = (state) => {
   return {
     itineraries: state.itineraries,
+    favourites: state.favourites,
   };
 };
 
-export default connect(mapStateToProps)(Activities);
+const mapDispatchToProps = dispatch => ({
+  addFav: (favourite) => dispatch(addFav(favourite))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Activities);

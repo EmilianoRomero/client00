@@ -3,8 +3,9 @@
     display: grid;
     width: 100vw;
     height: 100vh;
-    grid-template-rows: 25% 10% 60% 5%;
+    grid-template-rows: 5% 25% 10% 55% 5%;
     grid-template-areas:
+        "header-landed"
         "itineraries-header"
         "header-itinerary-text"
         "container-itinerary"

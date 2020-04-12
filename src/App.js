@@ -7,24 +7,19 @@ import Cities from "./cities";
 import Itineraries from "./components/Itinerary";
 import SignUp from "./components/SignUp";
 import LogIn from "./components/LogIn";
+import Favourites from "./components/Favourites";
 
-
-
-/* DASHBOARD Y LOGOUT
-import PrivateRoute from "./components/PrivateRoute";
-import Dashboard from "./components/Dashboard";
+/*
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./setAuthToken";
 import { setCurrentUser, logoutUser } from "./store/actions/authActions";
 import store from "./index";
 */
 
-
 import "normalize.css";
 import "./App.css";
 
-
-/* DASHBOARD Y LOGOUT
+/*
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
   // Set auth token header auth
@@ -34,17 +29,17 @@ if (localStorage.jwtToken) {
   const decoded = jwt_decode(token);
   // Set user and isAuthenticated
   store.dispatch(setCurrentUser(decoded));
+
   // Check for expired token
   const currentTime = Date.now() / 1000; // to get in milliseconds
   if (decoded.exp < currentTime) {
     // Logout user
     store.dispatch(logoutUser());
     // Redirect to login
-    window.location.href = "./login";   //or /users/login?
+    window.location.href = "/users/login";  //or ./login like originally was?
   }
 }
 */
-
 
 
 export default class App extends Component {
@@ -59,7 +54,7 @@ export default class App extends Component {
             <Route path="/itineraries/:city" component={Itineraries} />
             <Route path="/users/register" component={SignUp} />
             <Route path="/users/login" component={LogIn} />
-            {/*<PrivateRoute exact path="/dashboard" component={Dashboard} />*/}
+            <Route path="/users/favourites" component={Favourites} />
           </Switch>
         </div>
       </BrowserRouter>

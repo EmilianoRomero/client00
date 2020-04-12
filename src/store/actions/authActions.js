@@ -1,12 +1,15 @@
 import axios from "axios";
 import setAuthToken from "../../setAuthToken";
 import jwt_decode from "jwt-decode";
-import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
+import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING, ADD_FAV } from "./types";
+
+let reglink = "http://localhost:5000/users/register";
+let loginlink = "http://localhost:5000/users/login";
 // Register User
 export const registerUser = (userData, history) => (dispatch) => {
   axios
-    .post('http://localhost:5000/users/register', userData)  //originalmente "/api/users/register"
-    .then((res) => history.push("/login")) // re-direct to login on successful register
+    .post(reglink, userData) //originalmente "/api/users/register"
+    .then((res) => history.push("/users/login")) // re-direct to login on successful register
     .catch((err) =>
       dispatch({
         type: GET_ERRORS,
@@ -17,7 +20,7 @@ export const registerUser = (userData, history) => (dispatch) => {
 // Login - get user token
 export const loginUser = (userData) => (dispatch) => {
   axios
-    .post('http://localhost:5000/users/login', userData) //originalmente "/api/users/login"
+    .post(loginlink, userData) //originalmente "/api/users/login"
     .then((res) => {
       // Save to localStorage
       // Set token to localStorage
@@ -58,4 +61,39 @@ export const logoutUser = () => (dispatch) => {
   setAuthToken(false);
   // Set current user to empty object {} which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
+};
+
+
+export const fetchUserFavourites = (favourites) => {
+  return {
+    type: ADD_FAV,
+    favourites,
+  };
+};
+
+export const addFav = (favourite) => (dispatch) => {
+  // Headers
+  const config = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "x-auth-token": localStorage.getItem("token"),
+    },
+    mode: "no-cors",
+    body: favourite,
+  };
+
+  // dispatch(fetchUserRequest());
+  dispatch(fetchUserFavourites());
+
+  fetch("/users/favourites", config)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      dispatch({
+        type: ADD_FAV,
+      });
+    })
+    .catch((error) => {});
 };

@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+//import Favourites from "./components/Favourites";
 import "./SideDrawer.css";
 
 //Acá manejo los estados T/F con una clase nueva (la clase Si está abierta)
@@ -17,10 +19,10 @@ const SideDrawer = (props) => {
     <nav className=/*"side-drawer" not anymore*/ {drawerClasses}>
       <ul>
         <li>
-          <Link to="">Option 1</Link>
+          <Link to="/users/favourites">Favourites</Link>
         </li>
         <li>
-          <Link to="">Option 2</Link>
+          <Link to=""></Link>
         </li>
         <li>
           <Link to="">Option 3</Link>
