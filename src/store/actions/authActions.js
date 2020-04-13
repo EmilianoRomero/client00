@@ -63,7 +63,6 @@ export const logoutUser = () => (dispatch) => {
   dispatch(setCurrentUser({}));
 };
 
-
 export const fetchUserFavourites = (favourites) => {
   return {
     type: ADD_FAV,

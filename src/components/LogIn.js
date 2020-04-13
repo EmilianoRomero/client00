@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { loginUser } from "../store/actions/authActions.js";
@@ -8,7 +8,6 @@ import HomeButton from "../screen/Footer/HomeButton";
 import classnames from "classnames";
 import "normalize.css";
 import "./Login.css";
-import { Link } from "react-router-dom";
 
 class Login extends Component {
   constructor() {
@@ -19,19 +18,6 @@ class Login extends Component {
       errors: {},
     };
   }
-
-// push user to /app when they login
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/app"); 
-    }
-    if (nextProps.errors) {
-      this.setState({
-        errors: nextProps.errors,
-      });
-    }
-  }
-
 
   onChange = (e) => {
     this.setState({ [e.target.id]: e.target.value });
@@ -51,6 +37,17 @@ class Login extends Component {
   };
 
 
+// push user to /app when they login
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/app"); 
+    }
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors,
+      });
+    }
+  }
 
   render() {
     const { errors } = this.state;
@@ -122,8 +119,10 @@ Login.propTypes = {
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired //form. .object.
 };
+
 const mapStateToProps = (state) => ({
   auth: state.auth,
   errors: state.errors,
 });
+
 export default connect(mapStateToProps, { loginUser })(Login);
