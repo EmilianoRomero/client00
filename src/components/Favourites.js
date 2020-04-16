@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import { addFav } from "../store/actions/authActions";
 import "normalize.css";
 import "./Activities.css";
-import HeaderLanded from "../screen/Header/HeaderLanded";
-import HomeAuth from "../screen/Footer/HomeAuth";
+import Header from "../screen/Header/Header";
+import HomeButton from "../screen/Footer/HomeButton";
 
 class Favourites extends React.Component {
   constructor(props) {
@@ -86,7 +86,7 @@ class Favourites extends React.Component {
   render() {
     return (
       <div>
-        <HeaderLanded />
+        <Header />
 
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <div className="form">
@@ -118,7 +118,7 @@ class Favourites extends React.Component {
         </form>
 
         <div className="footer">
-          <HomeAuth />
+          <HomeButton />
         </div>
       </div>
     );

@@ -22,7 +22,7 @@ const SideDrawer = (props) => {
           <Link to="/users/favourites">Favourites</Link>
         </li>
         <li>
-          <Link to=""></Link>
+          <Link to="">Option 2</Link>
         </li>
         <li>
           <Link to="">Option 3</Link>

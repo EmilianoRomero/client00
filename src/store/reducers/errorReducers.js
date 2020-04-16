@@ -10,3 +10,8 @@ export default function errorReducer(state = initialState, action) {
       return state;
   }
 }
+
+/*
+If any errors occur then this reducer fill the state with errors 
+and we can display that errors from the frontend.
+*/

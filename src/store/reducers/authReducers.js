@@ -1,13 +1,26 @@
-import { SET_CURRENT_USER, USER_LOADING, ADD_FAV } from "../actions/types";
+import {
+  SET_CURRENT_USER,
+  //USER_LOADING,
+  //AUTH_LINK_GOOGLE,
+  //AUTH_UNLINK_GOOGLE,
+  ADD_FAV,
+} from "../actions/types";
 
 const isEmpty = require("is-empty");
 
 const initialState = {
   isAuthenticated: false,
   user: {},
-  loading: false,
+  //loading: false,
   favourites: [],
 };
+
+//GOOGLE
+/*
+  secret: "",
+  methods: [],
+  //
+  */
 
 export default function authReducer(state = initialState, action) {
   switch (action.type) {
@@ -18,12 +31,29 @@ export default function authReducer(state = initialState, action) {
         user: action.payload,
       };
 
+    /*
     case USER_LOADING:
       return {
         ...state,
         loading: true,
       };
+*/
+    //GOOGLE
+    /*
+    case AUTH_LINK_GOOGLE:
+      return {
+        ...state,
+        isAuthenticated: !isEmpty(action.payload),
+        user: action.payload,
+      };
 
+    case AUTH_UNLINK_GOOGLE:
+      return {
+        ...state,
+        isAuthenticated: isEmpty(action.payload),
+        user: action.payload,
+      };
+*/
     case ADD_FAV:
       return {
         ...state,

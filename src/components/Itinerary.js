@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import HomeAuth from "../screen/Footer/HomeAuth";
+import HomeButton from "../screen/Footer/HomeButton";
 import { fetchItineraries } from "../store/actions/itineraryActions";
 import "normalize.css";
 import "./Itinerary.css";
 import Activities from "./Activities";
-import HeaderLanded from "../screen/Header/HeaderLanded";
+import Header from "../screen/Header/Header";
 
 class Itineraries extends Component {
   
@@ -44,7 +44,7 @@ generateItinerariesHeader() {
     //let itinerariesHeader = this.props;
     return (
       <div className="container-itineraries-list">
-        <HeaderLanded className="header-landed"/>
+        <Header className="header-landed"/>
         <div className="itineraries-header">Cointainer dynamic image of the city</div>
         <div className="header-itinerary-text" />
           {/* check for data before mapping!!! */}
@@ -53,7 +53,7 @@ generateItinerariesHeader() {
               {this.generateItinerariesList()}
             </div>
           )}
-        <HomeAuth />
+        <HomeButton />
       </div>
     );
   }

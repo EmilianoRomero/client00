@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
-import LogoutLink from "./LogoutLink";
+//import LoginLink from "./clickLogIn";
+//import RegisterLink from "./clickSignIn";
+//import LogOut from "./clickLogOut";
+import LogRegContent from "./LogRegContent";
 import User from "./user.png";
-import "./LoginRegModal.css";
+import "./LogRegModal.css";
 
 //Acá manejo los estados T/F con una clase nueva (la clase Si está abierta)
-
-const LogOutModal = () => {
+const LogRegModal = () => {
   // Create a ref that we add to the element for which we want to detect outside clicks
   const ref = useRef();
   // State for our modal
@@ -25,7 +27,8 @@ const LogOutModal = () => {
       </div>
       {displayModal && (
         <div className="modal-login-reg" ref={ref}>
-          <LogoutLink />
+          {/*<LoginLink /> <RegisterLink /> <LogOut />*/}
+          <LogRegContent />
         </div>
       )}
     </>
@@ -36,7 +39,7 @@ const LogOutModal = () => {
 function useOnClickOutside(ref, handler) {
   useEffect(
     () => {
-      const listener = event => {
+      const listener = (event) => {
         // Do nothing if clicking ref's element or descendent elements
         if (!ref.current || ref.current.contains(event.target)) {
           return;
@@ -62,4 +65,4 @@ function useOnClickOutside(ref, handler) {
   );
 }
 
-export default LogOutModal;
+export default LogRegModal;

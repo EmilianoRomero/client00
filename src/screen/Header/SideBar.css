@@ -1,0 +1,11 @@
+.sidebar {
+    display: flex;
+    top: 0;
+    left: 0;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    /*justify-content: center;*/
+    width: 100%;
+    height: auto;
+    background: rgb(240, 85, 13);
+  }

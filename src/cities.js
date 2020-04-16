@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import HeaderLanded from "./screen/Header/HeaderLanded";
+import Header from "./screen/Header/Header";
 import SearchCity from "./components/SearchCity";
 import { fetchCities, searchCity } from "./store/actions/cityActions";
 import "normalize.css";
 import "./cities.css";
-import HomeAuth from "./screen/Footer/HomeAuth";
+import HomeButton from "./screen/Footer/HomeButton";
 
 class Cities extends Component {
   componentDidMount() {
@@ -33,7 +33,7 @@ class Cities extends Component {
 
     return (
       <div className="cities-list-container">
-        <HeaderLanded />
+        <Header />
         <SearchCity
           searchCity={this.props.searchCity}
           value={this.props.value}
@@ -41,7 +41,7 @@ class Cities extends Component {
         {/* check for data before mapping */}
         {filteredCity && <div className="cities-list">{filteredCity}</div>}
         <div className="fill"></div>
-        <HomeAuth />
+        <HomeButton />
       </div>
     );
   }

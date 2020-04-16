@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { loginUser } from "../store/actions/authActions.js";
-//import OtherHeader from "../screen/Header/Header";
+import Header from "../screen/Header/Header";
 import HomeButton from "../screen/Footer/HomeButton";
-import classnames from "classnames";
+import classnames from "classnames"; //We use same classnames module to display the errors.
 import "normalize.css";
 import "./Login.css";
 
@@ -17,30 +17,34 @@ class Login extends Component {
       password: "",
       errors: {},
     };
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  onChange = (e) => {
-    this.setState({ [e.target.id]: e.target.value });
-  };
+  handleInputChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  }
 
-  onSubmit = (e) => {
+  handleSubmit(e) {
     e.preventDefault();
-
-    const userData = {
+    const user = {
       email: this.state.email,
       password: this.state.password,
     };
-    this.props.loginUser(userData);
-    console.log(userData)
-    // since we handle the redirect within our component,
-    //we don't need to pass in this.props.history as a parameter
-  };
+    this.props.loginUser(user);
+  }
 
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/");
+    }
+  }
 
-// push user to /app when they login
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/app"); 
+      this.props.history.push("/");
     }
     if (nextProps.errors) {
       this.setState({
@@ -51,14 +55,13 @@ class Login extends Component {
 
   render() {
     const { errors } = this.state;
-
     return (
       <div className="login-container">
-        {/*<Header />*/}
+        <Header />
         <div className="form-container">
           <h3 className="line1-title">Login</h3>
 
-          <form noValidate onSubmit={this.onSubmit}>
+          <form noValidate onSubmit={this.handleSubmit}>
             <div className="line2-email">
               <label htmlFor="email">e-mail: </label>
               <input
@@ -68,7 +71,8 @@ class Login extends Component {
                 type="email"
                 id="email"
                 placeholder="enter valid e-mail"
-                onChange={this.onChange}
+                name="email"
+                onChange={this.handleInputChange}
                 value={this.state.email}
                 error={errors.email}
               />
@@ -87,7 +91,8 @@ class Login extends Component {
                 type="password"
                 id="password"
                 placeholder="enter valid password"
-                onChange={this.onChange}
+                name="password"
+                onChange={this.handleInputChange}
                 value={this.state.password}
                 error={errors.password}
               />
@@ -101,9 +106,14 @@ class Login extends Component {
               Login
             </button>
             <Link>
-            <button className="line5-google-btn" id="google-login-button" to="/auth/google" type="submit">
-              Google
-            </button>
+              <button
+                className="line5-google-btn"
+                id="google-login-button"
+                to="/auth/google"
+                type="submit"
+              >
+                Google
+              </button>
             </Link>
           </form>
 
@@ -117,7 +127,7 @@ class Login extends Component {
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired //form. .object.
+  errors: PropTypes.object.isRequired, //form. .object.
 };
 
 const mapStateToProps = (state) => ({
@@ -126,3 +136,11 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { loginUser })(Login);
+
+
+/*
+Register with a new User and it will redirect to a login page.
+Login with your credentials and the avatar is appears inside the navbar and links are also changed.
+Access the login or register route and you will be redirected to the root or home route.
+Try to log out and you will be on the login page.
+*/

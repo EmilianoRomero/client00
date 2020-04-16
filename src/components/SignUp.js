@@ -3,9 +3,9 @@ import { withRouter } from "react-router-dom"; //Link,
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../store/actions/authActions.js";
-//import OtherHeader from "../screen/Header/Header";
+import Header from "../screen/Header/Header";
 import HomeButton from "../screen/Footer/HomeButton";
-import classnames from "classnames";
+import classnames from "classnames"; //Necessary to render the conditional errors
 import "normalize.css";
 import "../index.css";
 
@@ -21,9 +21,42 @@ class SignUp extends Component {
       lastname: "",
       errors: {},
     };
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  handleInputChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const newUser = {
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password,
+      password2: this.state.password2,
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
+    };
+    this.props.registerUser(newUser, this.props.history);
+    console.log(newUser);
+  }
+
+  /*
+Check the logged in user status. If any point in time, the user is logged in 
+then he can not able to see the login or register route. 
+For that, a componentDidMount method has been added. 
+If the current user is logged in user and trying to register the new user, 
+then it prevents it and redirects to a home route.
+*/
+
   componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/");
+    }
     if (nextProps.errors) {
       this.setState({
         errors: nextProps.errors,
@@ -31,36 +64,22 @@ class SignUp extends Component {
     }
   }
 
-  onChange = (e) => {
-    this.setState({ [e.target.id]: e.target.value });
-  };
-
-  onSubmit = (e) => {
-    e.preventDefault();
-
-    const newUser = {
-      username: this.state.username,
-      email: this.state.email,
-      password: this.state.password,
-      password2: this.state.password2,
-      firstname: this.state.firstname,
-      lastname: this.state.lastname
-    };
-
-    this.props.registerUser(newUser, this.props.history);
-  };
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/");
+    }
+  }
 
   render() {
     const { errors } = this.state;
-
     return (
       <div className="signup-container">
-        {/*<OtherHeader />*/}
+        <Header />
 
         <div className="form-container">
           <h3 className="line1-title">Create your MYtinerary Account</h3>
 
-          <form noValidate onSubmit={this.onSubmit}>
+          <form noValidate onSubmit={this.handleSubmit}>
             <div className="line2-username">
               <label htmlFor="username">User name: </label>
               <input
@@ -70,7 +89,8 @@ class SignUp extends Component {
                 type="text"
                 id="username"
                 placeholder="enter username"
-                onChange={this.onChange}
+                onChange={this.handleInputChange}
+                name="username"
                 value={this.state.username}
                 error={errors.username}
               />
@@ -86,7 +106,8 @@ class SignUp extends Component {
                 type="email"
                 id="email"
                 placeholder="enter valid e-mail"
-                onChange={this.onChange}
+                onChange={this.handleInputChange}
+                name="email"
                 value={this.state.email}
                 error={errors.email}
               />
@@ -102,7 +123,8 @@ class SignUp extends Component {
                 type="password"
                 id="password"
                 placeholder="enter valid password"
-                onChange={this.onChange}
+                onChange={this.handleInputChange}
+                name="password"
                 value={this.state.password}
                 error={errors.password}
               />
@@ -118,7 +140,8 @@ class SignUp extends Component {
                 type="password"
                 id="password2"
                 placeholder="confirm password"
-                onChange={this.onChange}
+                onChange={this.handleInputChange}
+                name="passwprd2"
                 value={this.state.password2}
                 error={errors.password2}
               />
@@ -131,7 +154,8 @@ class SignUp extends Component {
                 type="text"
                 id="firstname"
                 placeholder="enter your first name"
-                onChange={this.onChange}
+                onChange={this.handleInputChange}
+                name="firstname"
                 value={this.state.firstname}
                 //error={errors.firstname}
               />
@@ -143,7 +167,8 @@ class SignUp extends Component {
                 type="text"
                 id="lastname"
                 placeholder="enter your last name"
-                onChange={this.onChange}
+                onChange={this.handleInputChange}
+                name="lastname"
                 value={this.state.lastname}
                 //error={errors.lastname}
               />

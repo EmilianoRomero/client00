@@ -2,21 +2,15 @@ import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Landing from "./screen/Landing";
-import AppLanded from "./screen/AppLanded";
 import Cities from "./cities";
 import Itineraries from "./components/Itinerary";
 import SignUp from "./components/SignUp";
 import LogIn from "./components/LogIn";
 import Favourites from "./components/Favourites";
 
-
-//import store from "./index";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 import "normalize.css";
 import "./App.css";
-
-
-
 
 export default class App extends Component {
   render() {
@@ -25,7 +19,6 @@ export default class App extends Component {
         <div className="App">
           <Switch>
             <Route exact path="/" component={Landing} />
-            <Route exact path="/app" component={AppLanded} />
             <Route path="/cities" component={Cities} />
             <Route path="/itineraries/:city" component={Itineraries} />
             <Route path="/users/register" component={SignUp} />

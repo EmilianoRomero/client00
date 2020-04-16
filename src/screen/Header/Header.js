@@ -1,40 +1,21 @@
 import React, { Component } from "react";
-//import Menu from "../Header/Menu";
-//import SideDrawer from "../Header/SideDrawer";
-//import Backdrop from "../Header/Backdrop";
-import LoginRegModal from "../Header/LoginRegModal";
+import LogRegModal from "../Header/LogRegModal";
+import SideBar from "./SideBar";
+//import PropTypes from 'prop-types';
+//import { connect } from 'react-redux';
+//import { withRouter } from 'react-router-dom';
 import "./Header.css";
 
-export default class Header extends Component {
-
-  state = {
-    sideDrawerOpen: false
-  };
-
-  drawerToggleClickHandler = () => {
-    this.setState(prevState => {
-      return { sideDrawerOpen: !prevState.sideDrawerOpen };
-    });
-  };
+class Header extends Component {
   
-  backdropClickHandler = () => {
-    this.setState({ sideDrawerOpen: false });
-  };
-
   render() {
-    /*
-    let backdrop;
-    if (this.state.sideDrawerOpen) {
-      backdrop = <Backdrop click={this.backdropClickHandler} />;
-    }
-*/
     return (
       <div className="header">
-        <LoginRegModal />
-        {/*<Menu drawerClickHandler={this.drawerToggleClickHandler} />*/}
-        {/*<SideDrawer show={this.state.sideDrawerOpen} />*/}
-        {/*{backdrop}*/}
+        <LogRegModal />
+        <SideBar />
       </div>
     );
   }
 }
+
+export default Header;
