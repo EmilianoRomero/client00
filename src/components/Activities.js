@@ -33,7 +33,7 @@ class Activities extends Component {
     if (this.state.open) {
       return this.props.itinerary.activities.map((activity) => {
         return (
-          <div className="activitiy-container" key={itinerary._id}>
+          <div className="activity-container" key={itinerary._id}>
             <h2 className="activity-title">{activity.activitytitle}</h2>
             <img
               className="activity-img"

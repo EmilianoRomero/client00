@@ -13,7 +13,7 @@ class Itineraries extends Component {
   componentDidMount() {
     const city = this.props.match.params.city;
     this.props.fetchItineraries(city);
-    //console.log(city);
+    console.log(city);
   }
 
   generateItinerariesList() {
@@ -24,28 +24,25 @@ class Itineraries extends Component {
     });
     return itinerariesList;
   }
-
-  /*
+/*
 generateItinerariesHeader() {
-    let itinerariesHeader = this.props.itineraries.map((itinerary) => {
+    let itinerariesHeader = this.props.itinerary.map((city) => {
       return (
-          <div className="itineraries-header" key={itinerary._id}>
-          <img className="itinerary-img" src={itinerary.imgurl} alt="" />
+          <div className="itineraries-header" key={city._id}>
+          <img className="itinerary-img" src={city.imgurl} alt="" />
         </div>
       );
     });
     return itinerariesHeader
   }
 */
-
   render() {
     console.log("props are here!", this.props);
     let itinerariesList = this.props;
-    //let itinerariesHeader = this.props;
     return (
       <div className="container-itineraries-list">
         <Header className="header-landed"/>
-        <div className="itineraries-header">Cointainer dynamic image of the city</div>
+        <div className="itineraries-header">city image</div>
         <div className="header-itinerary-text" />
           {/* check for data before mapping!!! */}
           {itinerariesList && (

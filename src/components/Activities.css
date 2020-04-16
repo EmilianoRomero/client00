@@ -1,7 +1,5 @@
 /*---MAIN CONTAINER---*/
 .itinerary {
-    text-align: left;
-    border: none;
     outline: none;
     transition: 0.4s;
     border-radius: 10px;
@@ -12,14 +10,12 @@
     margin-bottom: 10px;
     width: 840px;
     height: auto;
-    max-height: 100%;
+    max-height: none;
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
     flex-wrap: wrap;
     overflow: hidden;
 }
-
+/*
 /*---SECTION TEXT AND PHOTO---*/
 
 /*---TEXT---*/
@@ -110,7 +106,6 @@
     padding: 0;
     margin: 0;
     width: 840px;
-    height: 100%;
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: auto;
@@ -119,7 +114,7 @@
         "activities-list"
         "activities-list-comments";
     height: auto;
-    max-height: max-content;
+    max-height: none;
     transition: max-height 0.5s ease-out;
 }
 
@@ -127,7 +122,8 @@
 .activities-list-comments,
 .activity-title {
     position: relative;
-    height: max-content;
+    height: auto;
+    max-height: none;
     width: auto;
     margin: 0;
     display: flex;
@@ -139,13 +135,15 @@
     justify-content: flex-start;
 }
 
-.activity-title {
+.activity-title,
+.activity-img {
     justify-content: center;
 }
 
 .activities-list {
     position: relative;
-    height: max-content;
+    height: auto;
+    max-height: none;
     width: auto;
     margin: 0;
     display: flex;
@@ -157,17 +155,23 @@
 
 .activity-container {
     position: relative;
-    height: max-content;
+    height: auto;
+    max-height: none;
     width: auto;
     margin: 0;
     display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    
 }
 
 .activity-img {
     width: 125px;
     height: 125px;
     object-fit: cover;
-    position: absolute;
+    position: relative;
     border-radius: 50%;
     border-color: tomato;
     border-style: solid;
