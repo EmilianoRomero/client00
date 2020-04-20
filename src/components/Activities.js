@@ -62,16 +62,18 @@ class Activities extends Component {
             </div>
           </div>
           <div className="right">
-            <div className="line-1left">
-              <h2 className="itinerary-title">{itinerary.title}</h2>
-            </div>
-            <div className="line-1right">
-              <button
-                className={this.state.button ? "buttonTrue" : "buttonFalse"}
-                onClick={this.handleClick}
-              >
-                Like
-              </button>
+            <div className="line-1">
+              <div className="line-1left">
+                <h2 className="itinerary-title">{itinerary.title}</h2>
+              </div>
+              <div className="line-1right">
+                <button
+                  className={this.state.button ? "buttonTrue" : "buttonFalse"}
+                  onClick={this.handleClick}
+                >
+                  Like
+                </button>
+              </div>
             </div>
             <div className="line-2">
               <p className="itinerary-likes">{"Likes: " + itinerary.likes}</p>

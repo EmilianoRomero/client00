@@ -5,11 +5,25 @@
     height: 100vh;
     grid-template-rows: 5% 25% 10% 55% 5%;
     grid-template-areas:
-        "header-landed"
-        "itineraries-header"
+        "header"
+        "itinerary-img"
         "header-itinerary-text"
-        "container-itinerary"
-        "back-home"
+        "itineraries-list"
+        "linkHome"
+}
+
+.itinerary-img {
+    padding: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .itineraries-list {

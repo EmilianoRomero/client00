@@ -41,7 +41,7 @@
 .right {
     display: grid;
     grid-template-areas:
-        "line-1"
+        "line-1left" "line-1right"
         "line-2"
         "line-3";
 }
@@ -61,6 +61,11 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+}
+
+.line-1 {
+    display: grid;
+    grid-template-columns: 75% 25%;
 }
 
 .line-2 {
@@ -100,6 +105,7 @@
     border: none;
     text-align: center;
     outline: none;
+    padding: 15px;
 }
 
 .grid-activities {
@@ -151,7 +157,7 @@
     justify-content: space-around;
     align-items: center;
     align-content: center;
-}
+    }
 
 .activity-container {
     position: relative;
@@ -184,5 +190,5 @@ p.itinerary-duration,
 p.itinerary-price,
 p.itinerary-hashtags {
     margin: 3px;
-    padding: 3px;
+    padding: 5px;
 }

@@ -9,47 +9,56 @@ import Activities from "./Activities";
 import Header from "../screen/Header/Header";
 
 class Itineraries extends Component {
-  
   componentDidMount() {
     const city = this.props.match.params.city;
     this.props.fetchItineraries(city);
-    console.log(city);
+    console.log("props by fetching", this.props); //devuelve ciudad y ruta
+    console.log("this is the city", city); //devuelve itineraries.city.name
   }
 
   generateItinerariesList() {
     let itinerariesList = this.props.itineraries.map((itinerary) => {
+      console.log(this.props); //devuelve lo mismo de 15 pero ahora incluye objetos itinerario y toda su info
       return (
-          <Activities itinerary={itinerary} key={itinerary._id}></Activities>
+        <Activities itinerary={itinerary} key={itinerary._id}></Activities>
       );
     });
     return itinerariesList;
   }
-/*
-generateItinerariesHeader() {
-    let itinerariesHeader = this.props.itinerary.map((city) => {
+
+  generateItineraryHeaderImage() {
+    let itineraryHeaderImage = this.props.itineraries.map((itinerary) => {
       return (
-          <div className="itineraries-header" key={city._id}>
-          <img className="itinerary-img" src={city.imgurl} alt="" />
-        </div>
+        <img
+          className="itinerary-img"
+          key={itinerary._id}
+          src={itinerary.imgurl}
+          alt=""
+        />
       );
     });
-    return itinerariesHeader
+    return itineraryHeaderImage.slice(1);
   }
-*/
+
   render() {
-    console.log("props are here!", this.props);
     let itinerariesList = this.props;
+    console.log("props are here!", this.props);
+
     return (
       <div className="container-itineraries-list">
-        <Header className="header-landed"/>
-        <div className="itineraries-header">city image</div>
+        <Header className="header" />
+        <div className="itinerary-img">
+          {this.generateItineraryHeaderImage()}
+        </div>
         <div className="header-itinerary-text" />
-          {/* check for data before mapping!!! */}
-          {itinerariesList && (
+        {
+          /* check for data before mapping!!! */
+          itinerariesList && (
             <div className="itineraries-list">
               {this.generateItinerariesList()}
             </div>
-          )}
+          )
+        }
         <HomeButton />
       </div>
     );
@@ -62,6 +71,7 @@ Itineraries.propTypes = {
 };
 
 const mapStateToProps = (state) => {
+  console.log("state here!", state);
   return {
     itineraries: state.itineraries.itineraries,
   };
