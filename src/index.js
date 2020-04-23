@@ -22,11 +22,10 @@ const store = createStore(
   rootReducer,
   initialState,
   composeWithDevTools(
-    applyMiddleware(thunk),
+    applyMiddleware(thunk)
     //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__
   )
 );
-
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -37,7 +36,6 @@ if (localStorage.jwtToken) {
   const decoded = jwt_decode(localStorage.jwtToken);
   // Set user and isAuthenticated
   store.dispatch(setCurrentUser(decoded));
-
 
   // Check for expired token
   const currentTime = Date.now() / 1000; // to get in milliseconds
@@ -55,4 +53,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
-

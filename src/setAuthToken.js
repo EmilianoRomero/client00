@@ -11,7 +11,6 @@ const setAuthToken = (token) => {
 };
 export default setAuthToken;
 
-
 /* If all of your credentials are right then we will get a token in response 
 and we can see that token inside Postman or even in our console.
 After getting a token, we need to store that token inside localStorage 

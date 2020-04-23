@@ -7,7 +7,6 @@ import SideBar from "./SideBar";
 import "./Header.css";
 
 class Header extends Component {
-  
   render() {
     return (
       <div className="header">

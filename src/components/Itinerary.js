@@ -16,6 +16,7 @@ class Itineraries extends Component {
     console.log("this is the city", city); //devuelve itineraries.city.name
   }
 
+  //IMPORTAR LOS COMENTARIOS ACÁ? MAPEAR APARTE?
   generateItinerariesList() {
     let itinerariesList = this.props.itineraries.map((itinerary) => {
       console.log(this.props); //devuelve lo mismo de 15 pero ahora incluye objetos itinerario y toda su info

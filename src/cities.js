@@ -16,7 +16,7 @@ class Cities extends Component {
 
   render() {
     const { filteredCities } = this.props;
-    const filteredCity = filteredCities.map(city => {
+    const filteredCity = filteredCities.map((city) => {
       return (
         <div className="container-cities" key={city._id}>
           <div className="cities">
@@ -49,12 +49,12 @@ class Cities extends Component {
 
 Cities.propTypes = {
   fetchCities: PropTypes.func.isRequired,
-  filteredCities: PropTypes.array.isRequired
+  filteredCities: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    filteredCities: state.cities.filteredCities
+    filteredCities: state.cities.filteredCities,
   };
 };
 

@@ -12,9 +12,7 @@ import "./Landing.css";
 //THE REST OF THE COMPONENTS WILL BE OUT
 
 export default class Landing extends Component {
-  
   render() {
-    
     return (
       <div>
         <div className="main-container-fluid" id="main-container-fluid">

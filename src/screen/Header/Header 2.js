@@ -1,39 +1,40 @@
 import React, { Component } from "react";
 //import Menu from "../Header/Menu";
 //import SideDrawer from "../Header/SideDrawer";
-//import Backdrop from "../Header/Backdrop";
-import LoginRegModal from "./LogRegModal";
+import Backdrop from "../Header/Backdrop";
+import LogRegModal from "./LogRegModal";
 import "./Header.css";
 
-export default class Header extends Component {
-
+export default class Header2 extends Component {
   state = {
-    sideDrawerOpen: false
+    sideDrawerOpen: false,
   };
 
   drawerToggleClickHandler = () => {
-    this.setState(prevState => {
-      return { sideDrawerOpen: !prevState.sideDrawerOpen };
+    this.setState((prevState) => {
+      return {
+        sideDrawerOpen: !prevState.sideDrawerOpen,
+      };
     });
   };
-  
+
   backdropClickHandler = () => {
-    this.setState({ sideDrawerOpen: false });
+    this.setState({
+      sideDrawerOpen: false,
+    });
   };
 
   render() {
-    /*
     let backdrop;
     if (this.state.sideDrawerOpen) {
       backdrop = <Backdrop click={this.backdropClickHandler} />;
     }
-*/
     return (
       <div className="header">
-        <LoginRegModal />
+        <LogRegModal /> {/*<LoginRegModal />*/}
         {/*<Menu drawerClickHandler={this.drawerToggleClickHandler} />*/}
         {/*<SideDrawer show={this.state.sideDrawerOpen} />*/}
-        {/*{backdrop}*/}
+        {backdrop}
       </div>
     );
   }

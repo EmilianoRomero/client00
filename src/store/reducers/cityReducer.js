@@ -1,28 +1,24 @@
-import {
-  SEARCH_CITY,
-  FETCH_CITIES_SUCCESS
-} from "../actions/types";
+import { SEARCH_CITY, FETCH_CITIES_SUCCESS } from "../actions/types";
 
-const initCities = []
+const initCities = [];
 
 const initialState = {
   searchValue: "",
   filteredCities: initCities,
-  cities: initCities
+  cities: initCities,
 };
 
 export default function cityReducer(state = initialState, action) {
   switch (action.type) {
     case SEARCH_CITY: {
       const searchValue = action.payload;
-      const filteredCities = state.cities.filter(
-        city =>
+      const filteredCities = state.cities.filter((city) =>
         city.name.toString().toLowerCase().includes(searchValue)
       );
       return {
         ...state,
         searchValue,
-        filteredCities
+        filteredCities,
       };
     }
     case FETCH_CITIES_SUCCESS: {
@@ -30,7 +26,7 @@ export default function cityReducer(state = initialState, action) {
       return {
         ...state,
         cities,
-        filteredCities: cities
+        filteredCities: cities,
       };
     }
     default:

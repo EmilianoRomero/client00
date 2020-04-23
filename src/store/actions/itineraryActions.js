@@ -13,7 +13,7 @@ const fetchItinerariesRequest = () => {
 const fetchItinerariesSuccess = (itineraries) => {
   return {
     type: FETCH_ITINERARIES_SUCCESS,
-    payload: itineraries
+    payload: itineraries,
   };
 };
 
@@ -24,7 +24,8 @@ const fetchItinerariesFailure = (error) => {
   };
 };
 
-export const fetchItineraries = (city) => { //está bien pasar la ciudad como parámetro acá
+export const fetchItineraries = (city) => {
+  //está bien pasar la ciudad como parámetro acá
   return async (dispatch) => {
     dispatch(fetchItinerariesRequest(city));
     try {

@@ -1,7 +1,7 @@
 import axios from "axios";
 import setAuthToken from "../../setAuthToken";
 import jwt_decode from "jwt-decode";
-import { GET_ERRORS, SET_CURRENT_USER, ADD_FAV } from "./types";
+import { GET_ERRORS, SET_CURRENT_USER } from "./types";
 
 /*
 So, from this file, we will send an AJAX request to the node.js server. 
@@ -54,15 +54,6 @@ export const setCurrentUser = (decoded) => {
     payload: decoded,
   };
 };
-/*
-// User loading
-export const setUserLoading = () => {
-  return {
-    type: USER_LOADING,
-  };
-};
-*/
-
 // Log user out
 export const logoutUser = (history) => (dispatch) => {
   // Remove token from local storage
@@ -72,41 +63,5 @@ export const logoutUser = (history) => (dispatch) => {
   // Set current user to empty object {} which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
   //redirigir a login una vez hecho logout
-  history.push('users/login');
-};
-
-
-//FAVOURITES SECTION
-export const fetchUserFavourites = (favourites) => {
-  return {
-    type: ADD_FAV,
-    favourites,
-  };
-};
-
-export const addFav = (favourite) => (dispatch) => {
-  // Headers
-  const config = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-      "x-auth-token": localStorage.getItem("token"),
-    },
-    mode: "no-cors",
-    body: favourite,
-  };
-
-  // dispatch(fetchUserRequest());
-  dispatch(fetchUserFavourites());
-
-  fetch("/users/favourites", config)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      dispatch({
-        type: ADD_FAV,
-      });
-    })
-    .catch((error) => {});
+  history.push("users/login");
 };

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-//import { NavLink } from "react-router-dom";
-import { addFav } from "../store/actions/authActions";
+//import Comments from "./Comments";
 import "normalize.css";
 import "./Activities.css";
 
@@ -16,12 +15,9 @@ class Activities extends Component {
   }
 
   handleClick() {
-    const { itinerary } = this.props;
-
     this.setState({
       button: !this.state.button,
     });
-    this.props.addFav(itinerary._id);
   }
 
   toggle = () => {
@@ -96,6 +92,7 @@ class Activities extends Component {
           <h2 className="activities-list-comments">
             {this.state.open ? "COMMENTS:" : " "}
           </h2>
+          {/*<Comments className="comments-list">{this.props.comments}</Comments>*/}
         </div>
       </div>
     );
@@ -105,15 +102,10 @@ class Activities extends Component {
 const mapStateToProps = (state) => {
   return {
     itineraries: state.itineraries,
-    favourites: state.favourites,
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  addFav: (favourite) => dispatch(addFav(favourite)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Activities);
+export default connect(mapStateToProps)(Activities);
 
 /* SECCIÓN ÍNTEGRA
 return (

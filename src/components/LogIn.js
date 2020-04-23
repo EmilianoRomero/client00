@@ -137,7 +137,6 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, { loginUser })(Login);
 
-
 /*
 Register with a new User and it will redirect to a login page.
 Login with your credentials and the avatar is appears inside the navbar and links are also changed.

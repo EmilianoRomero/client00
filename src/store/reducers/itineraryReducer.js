@@ -1,9 +1,7 @@
-import {
-  FETCH_ITINERARIES_SUCCESS
-} from "../actions/types";
+import { FETCH_ITINERARIES_SUCCESS } from "../actions/types";
 
 const initialState = {
-  itineraries: []
+  itineraries: [],
 };
 
 export default function itineraryReducer(state = initialState, action) {
@@ -11,11 +9,11 @@ export default function itineraryReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_ITINERARIES_SUCCESS: {
       //const itineraries = action.payload;
-      //itineraries constituye el payload del action, 
+      //itineraries constituye el payload del action,
       //no como yo había puesto (itineraries = action.itineraries)
       return {
         ...state,
-        itineraries: action.payload
+        itineraries: action.payload,
       };
     }
     default:
