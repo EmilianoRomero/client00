@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-//import Comments from "./Comments";
+import Comments from "./Comments";
 import "normalize.css";
 import "./Activities.css";
 
@@ -92,7 +92,8 @@ class Activities extends Component {
           <h2 className="activities-list-comments">
             {this.state.open ? "COMMENTS:" : " "}
           </h2>
-          {/*<Comments className="comments-list">{this.props.comments}</Comments>*/}
+          <Comments />
+          {/*<Comments />*/}
         </div>
       </div>
     );

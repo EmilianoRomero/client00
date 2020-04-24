@@ -32,18 +32,18 @@ export const errorGetComments = (error) => {
 };
 
 export const getComments = (itinerary_id) => {
+  console.log(itinerary_id);
   return async (dispatch) => {
-    dispatch(requestGetComments(itinerary_id));
-    try {
-      let response = await fetch(
-        "http://localhost:5000/comments/" + itinerary_id
-      );
-      let json = await response.json();
-      console.log(json);
-      dispatch(successGetComments(json));
-    } catch (error) {
-      dispatch(errorGetComments(error));
-    }
+    dispatch(requestGetComments());
+    await axios
+      .get("http://localhost:5000/comments/itinerary" + itinerary_id)
+      .then((res) => {
+        dispatch(successGetComments(res.data));
+        console.log(res.data);
+      })
+      .catch((error) => {
+        dispatch(errorGetComments(error));
+      });
   };
 };
 
@@ -53,10 +53,13 @@ export const requestPostComment = () => {
   };
 };
 
-export const postCommentSuccess = (comment) => {
+//Originalmente solo comment
+export const postCommentSuccess = (comment, itinerary_id, user_id) => {
   return {
     type: POST_COMMENT,
-    payload: comment,
+    comment,
+    itinerary_id,
+    user_id,
   };
 };
 
@@ -68,17 +71,17 @@ export const errorPostComment = (error) => {
 };
 
 export function postNewComment(comment) {
-  return function (dispatch) {
-    dispatch(requestPostComment()); //NO ESTÁ DECLARADO FUERA, ESTÁ TODO ACÁ
-    axios
+  return async (dispatch) => {
+    dispatch(requestPostComment());
+    await axios
       .post("http://localhost:5000/comments/" + comment.itinerary_id, comment)
       .then((res) => {
-        dispatch(postCommentSuccess(res.data)); //NO ESTÁ DECLARADO FUERA, ESTÁ TODO ACÁ
+        dispatch(postCommentSuccess(res.data));
         console.log("NEW COMMENT POSTED SUCCESSFULLY");
         console.log(res.data);
       })
       .catch((error) => {
-        dispatch(errorPostComment(error)); //NO ESTÁ DECLARADO FUERA, ESTÁ TODO ACÁ
+        dispatch(errorPostComment(error));
       });
   };
 }
@@ -87,9 +90,11 @@ export const requestDeleteComment = () => ({
   type: REQUEST_DELETE_COMMENT,
 });
 
-export const successDeleteComment = (comment) => ({
+//Originalmente era comment. De qué itinerario (itineraryId) y qué comentario (index del comment)
+export const successDeleteComment = (itinerary_id, i) => ({
   type: DELETE_COMMENT,
-  payload: comment,
+  itinerary_id,
+  i,
 });
 
 export const errorDeleteComment = (error) => ({
@@ -98,19 +103,19 @@ export const errorDeleteComment = (error) => ({
 });
 
 export function deleteComment(id) {
-  return (dispatch) => {
-    dispatch(requestDeleteComment()); //NO ESTÁ DECLARADO FUERA, ESTÁ TODO ACÁ
-    axios
+  return async (dispatch) => {
+    dispatch(requestDeleteComment());
+    await axios
       .delete(
         "http://localhost:5000/comments/" + id
         //{headers: tokenConfig().headers} //REVISAR CÓMO LA AUTORIZACIÓN AFECTA A LA ACCIÓN
       )
       .then((res) => {
         console.log(res.data);
-        dispatch(successDeleteComment(res.data)); //NO ESTÁ DECLARADO FUERA, ESTÁ TODO ACÁ
+        dispatch(successDeleteComment(res.data));
       })
       .catch((error) => {
-        dispatch(errorDeleteComment(error)); //NO ESTÁ DECLARADO FUERA, ESTÁ TODO ACÁ
+        dispatch(errorDeleteComment(error));
       });
   };
 }

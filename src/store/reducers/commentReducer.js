@@ -34,7 +34,7 @@ export default function commentReducer(state = initState, action) {
       return {
         ...state,
         isLoading: false,
-        //comments: action.payload,
+        //comments: action.payload.itinerary_id,
         comments: state.comments.concat(action.payload.comment),
       };
     case DELETE_COMMENT:
