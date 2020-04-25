@@ -28,6 +28,9 @@ class Itineraries extends Component {
     return itinerariesList;
   }
 
+  //BUSCAR OTRO MÉTODO PARA QUE:
+  //a) muestre la foto de la ciudad y despliegue un aviso de que no hay itinerarios para esta ciudad
+  //b) directamente despliegue aviso de que no hay itinerarios para esta ciudad
   generateItineraryHeaderImage() {
     let itineraryHeaderImage = this.props.itineraries.map((itinerary) => {
       return (

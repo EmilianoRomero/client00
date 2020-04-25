@@ -108,7 +108,7 @@
     padding: 15px;
 }
 
-.grid-activities {
+.grid-collapsible {
     padding: 0;
     margin: 0;
     width: 840px;
@@ -118,14 +118,15 @@
     grid-template-areas:
         "activities-list-title"
         "activities-list"
-        "activities-list-comments";
+        "comments-list-title"
+        "comments-list";
     height: auto;
     max-height: none;
     transition: max-height 0.5s ease-out;
 }
 
-.activities-list-header,
-.activities-list-comments,
+.activities-list-title,
+.comments-list-title,
 .activity-title {
     position: relative;
     height: auto;
@@ -136,8 +137,8 @@
     flex-direction: row;
 }
 
-.activities-list-header,
-.activities-list-comments {
+.activities-list-title,
+.comments-list-title {
     justify-content: flex-start;
 }
 
@@ -146,7 +147,8 @@
     justify-content: center;
 }
 
-.activities-list {
+.activities-list,
+.comments-list {
     position: relative;
     height: auto;
     max-height: none;

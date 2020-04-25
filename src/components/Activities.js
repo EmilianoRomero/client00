@@ -44,6 +44,11 @@ class Activities extends Component {
 
   render() {
     const { itinerary } = this.props;
+    //const { itineraryId } = this.props.match.params;
+    console.log(this.props);
+    /*____Video Wes_____*/
+    //const itineraryComments = this.props.comments[itineraryId] || [];
+    //console.log(this.props.comments)
 
     return (
       <div className="itinerary">
@@ -84,16 +89,18 @@ class Activities extends Component {
         <button className="flap-content-button" onClick={this.toggle}>
           {this.state.open ? "Close" : "View All"}
         </button>
-        <div className="grid-activities">
-          <h2 className="activities-list-header">
+        <div className="grid-collapsible">
+          <h2 className="activities-list-title">
             {this.state.open ? "ACTIVITIES:" : " "}
           </h2>
           <div className="activities-list">{this.generateActivitiesList()}</div>
-          <h2 className="activities-list-comments">
+          <h2 className="comments-list-title">
             {this.state.open ? "COMMENTS:" : " "}
           </h2>
-          <Comments />
-          {/*<Comments />*/}
+          <div className="comments-list">
+            <p>Activities.js line 96 -Comments should appear here</p>
+            {/*itineraryComments={itineraryComments}*/} <Comments />
+          </div>
         </div>
       </div>
     );
@@ -103,62 +110,8 @@ class Activities extends Component {
 const mapStateToProps = (state) => {
   return {
     itineraries: state.itineraries,
+    //comments: state.comments,
   };
 };
 
 export default connect(mapStateToProps)(Activities);
-
-/* SECCIÓN ÍNTEGRA
-return (
-      <div className="itinerary">
-        <div className="grid-itinerary">
-          <div className="left">
-            <div className="itinerary-profile-img-container">
-              <img
-                className="itinerary-profile-img"
-                src={itinerary.profileimgurl}
-                alt=""
-              />
-            </div>
-          </div>
-          <div className="right">
-            <div className="line-1left">
-              <h2 className="itinerary-title">{itinerary.title}</h2>
-            </div>
-            <div className="line-1right">
-              <button
-                className={this.state.button ? "buttonTrue" : "buttonFalse"}
-                onClick={this.handleClick}
-              >
-                Like
-              </button>
-            </div>
-            <div className="line-2">
-              <p className="itinerary-likes">{"Likes: " + itinerary.likes}</p>
-              <p className="itinerary-duration">{itinerary.duration}</p>
-              <p className="itinerary-price">{itinerary.price}</p>
-            </div>
-            <div className="line-3">
-              <p className="itinerary-hashtags"> {itinerary.hashtags}</p>
-            </div>
-          </div>
-        </div>
-        <div className="flap-content">
-          <button className="flap-content-button" onClick={this.toggle}>
-            {this.state.open ? "Close" : "View All"}
-          </button>
-          <div className="grid-activities">
-            <h2 className="activities-list-header">
-              {this.state.open ? "ACTIVITIES:" : " "}
-            </h2>
-            <div className="activities-list">
-              {this.generateActivitiesList()}
-            </div>
-            <h2 className="activities-list-comments">
-              {this.state.open ? "COMMENTS:" : " "}
-            </h2>
-          </div>
-        </div>
-      </div>
-    );
-    */

@@ -1,12 +1,12 @@
 import {
   REQUEST_GET_COMMENTS,
-  GET_COMMENTS,
+  GET_COMMENTS_SUCCESS,
   ERROR_GET_COMMENTS,
   REQUEST_POST_COMMENT,
-  POST_COMMENT,
+  POST_COMMENT_SUCCESS,
   ERROR_POST_COMMENT,
   REQUEST_DELETE_COMMENT,
-  DELETE_COMMENT,
+  DELETE_COMMENT_SUCCESS,
   ERROR_DELETE_COMMENT,
 } from "../actions/types";
 
@@ -17,6 +17,7 @@ const initState = {
 };
 
 export default function commentReducer(state = initState, action) {
+  console.log(action)
   switch (action.type) {
     //REQUESTS
     case REQUEST_GET_COMMENTS:
@@ -29,15 +30,16 @@ export default function commentReducer(state = initState, action) {
       };
 
     //SUCCESS CASES
-    case GET_COMMENTS:
-    case POST_COMMENT:
+    case GET_COMMENTS_SUCCESS:
+    case POST_COMMENT_SUCCESS:
+      console.log(action.payload)
       return {
         ...state,
         isLoading: false,
-        //comments: action.payload.itinerary_id,
-        comments: state.comments.concat(action.payload.comment),
+        comments: action.payload,
+        //comments: state.comments.concat(action.payload.comment),
       };
-    case DELETE_COMMENT:
+    case DELETE_COMMENT_SUCCESS:
       console.log(action.payload.comment._id);
       console.log(state.comments);
       return {
@@ -54,7 +56,7 @@ export default function commentReducer(state = initState, action) {
     case ERROR_DELETE_COMMENT:
       return {
         ...state,
-        loading: false,
+        isLoading: false,
         error: action.payload.error,
         comments: [],
       };
