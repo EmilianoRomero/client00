@@ -31,11 +31,11 @@ export const errorGetComments = (error) => {
   };
 };
 
-export const getComments = (itinerary_id) => {
+export const getComments = () => {
   return async (dispatch) => {
     dispatch(requestGetComments());
     await axios
-      .get("http://localhost:5000/comments/itinerary/" + itinerary_id)
+      .get("http://localhost:5000/comments/all")
       .then((res) => {
         dispatch(successGetComments(res.data));
         console.log(res);
@@ -45,6 +45,10 @@ export const getComments = (itinerary_id) => {
       });
   };
 };
+
+
+//originalmente
+//.get("http://localhost:5000/comments/itinerary/" + itinerary_id)
 
 //NO AXIOS
 /*

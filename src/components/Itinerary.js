@@ -47,7 +47,7 @@ class Itineraries extends Component {
 
   render() {
     let itinerariesList = this.props;
-    console.log("props are here!", this.props);
+    console.log("props Itinerary.js are here!", this.props);
 
     return (
       <div className="container-itineraries-list">
@@ -76,7 +76,7 @@ Itineraries.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  console.log("state here!", state);
+  console.log("state Itinerary.js here!", state);
   return {
     itineraries: state.itineraries.itineraries,
   };

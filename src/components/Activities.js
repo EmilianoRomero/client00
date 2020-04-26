@@ -44,12 +44,7 @@ class Activities extends Component {
 
   render() {
     const { itinerary } = this.props;
-    //const { itineraryId } = this.props.match.params;
     console.log(this.props);
-    /*____Video Wes_____*/
-    //const itineraryComments = this.props.comments[itineraryId] || [];
-    //console.log(this.props.comments)
-
     return (
       <div className="itinerary">
         <div className="grid-itinerary">
@@ -99,7 +94,7 @@ class Activities extends Component {
           </h2>
           <div className="comments-list">
             <p>Activities.js line 96 -Comments should appear here</p>
-            {/*itineraryComments={itineraryComments}*/} <Comments />
+            <Comments />
           </div>
         </div>
       </div>
@@ -110,7 +105,7 @@ class Activities extends Component {
 const mapStateToProps = (state) => {
   return {
     itineraries: state.itineraries,
-    //comments: state.comments,
+    comments: state.comments,
   };
 };
 

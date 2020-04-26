@@ -21,11 +21,8 @@ export default class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route path="/cities" component={Cities} />
             <Route path="/itineraries/:city" component={Itineraries} />
-            {/*<Route path="/comments" component={Comments} />*/}
-            <Route
-              path="/comments/itinerary/:itinerary_id"
-              component={Comments}
-            />
+            {/*<Route exact path="/comments" component={Comments} />*/}
+            <Route path="/comments/all" component={Comments} />
             <Route path="/users/register" component={SignUp} />
             <Route path="/users/login" component={LogIn} />
           </Switch>

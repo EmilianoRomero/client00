@@ -4,33 +4,113 @@ import PropTypes from "prop-types";
 import {
   getComments,
   errorGetComments,
-  postNewComment,
-  deleteComment,
+  //postNewComment,
+  //deleteComment,
 } from "../store/actions/commentActions";
 
 class Comments extends Component {
   componentDidMount() {
-    const itinerary_id = this.props.match.params.itinerary_id;
-    this.props.getComments(itinerary_id);
-    console.log("props by fetching", this.props.params); //devuelve ciudad y ruta
-    console.log("itinerary_id", itinerary_id); //devuelve itineraries.city.name
+    //const { itinerary_id } = this.props.match.params.itinerary_id;
+    //COULDN'T MAKE IT WORK! UNDEFINED WHEN comments/itinerary/itinerary_id
+    this.props.getComments();
+    console.log("props by fetching", this.props.itineraries.itineraries);
   }
 
   render() {
-    let { comments } = this.props;
-    const commentsList =
-      comments.length && comments.itinerary_id === this.props.params ? (
-        comments.map((comment) => {
+    let { comments, itineraries } = this.props;
+    console.log("props Comments.js are here!", this.props);
+
+    const itineraryComments =
+      comments.length && comments.itinerary_id === itineraries._id ? (
+        comments.map((comment, i) => {
+          console.log(
+            "ITINERARY ID COMMENTS [0] HERE",
+            comments[0].itinerary_id
+          );
+          //OBTENGO ITINERARY_ID del comment
+          console.log("ITINERARY ID ITINERARY [0] HERE", itineraries[0]._id);
+          //OBTENGO ITINERARY_ID del itinerary
           return (
-            <div key={comment.itinerary_id} className="commentBox">
-              <p className="comment">{comment.comment}</p>
+            <div key={i}>
+              <p>{comment.comment}</p>
             </div>
           );
         })
       ) : (
-        <div className="empty"> NO MESSAGES FOR THIS ITINERARY </div>
+        <div> NO MESSAGES FOR THIS ITINERARY </div>
       );
-    return <div className="comments">{commentsList}</div>;
+    return <div>{itineraryComments}</div>;
+    /*
+    let itineraryComments = comments.filter((comment) => {
+      return comment.itinerary_id !== itineraries._id;
+    }) ? (
+      comments.map((comment, i) => {
+        return (
+          <div key={i}>
+            <p>{comment.comment}</p>
+          </div>
+        );
+      })
+    ) : (
+      <div> NO MESSAGES FOR THIS ITINERARY </div>
+    );
+*/
+  }
+}
+
+Comments.propTypes = {
+  getComments: PropTypes.func.isRequired,
+  errorGetComments: PropTypes.func.isRequired,
+  comments: PropTypes.object.isRequired,
+  itineraries: PropTypes.object.isRequired,
+};
+
+//TRAIGO ESTADOS DESDE EL REDUCER Y LOS BAJO COMO PROPIEDADES
+const mapStateToProps = (state) => {
+  console.log("state Comments.js here!", state);
+  console.log("state comments.comments here", state.comments.comments);
+  return {
+    isLoading: state.comments.isLoading,
+    comments: state.comments.comments,
+    error: state.comments.error,
+    itineraries: state.itineraries.itineraries,
+  };
+};
+
+//TRAIGO DESPACHO DE ACCIONES DESDE LAS ACTIONS Y LAS BAJO COMO PROPIEDADES
+const mapDispatchToProps = (dispatch) => ({
+  getComments: () => dispatch(getComments()),
+  errorGetComments: (error) => dispatch(errorGetComments(error)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Comments);
+
+//OTRO APPROACH SEMI_FUNCIONAL COPIANDO LO HECHO CON CITIES
+/*
+class Comments extends Component {
+  componentDidMount() {
+    this.props.getComments();
+    console.log(this.props)
+  }
+
+  render() {
+    const { comments } = this.props;
+    const itineraryComments = comments.map((comment) => {
+      return (
+        <div key={comment._id}>
+          <div>
+            <p>{comment.comment}</p>
+          </div>
+        </div>
+      );
+    });
+
+    return (
+    <div>comments here!>
+        {"COMMENTS HERE" + itineraryComments && <div >{itineraryComments}</div>}
+      </div>
+    
+    )
   }
 }
 
@@ -44,72 +124,16 @@ Comments.propTypes = {
 //TRAIGO ESTADOS DESDE EL REDUCER Y LOS BAJO COMO PROPIEDADES
 const mapStateToProps = (state) => ({
   isLoading: state.comments.isLoading,
-  comments: state.comments,
-  error: state.comments.error,
-  itineraries: state.itineraries,
-});
-
-//TRAIGO DESPACHO DE ACCIONES DESDE LAS ACTIONS Y LAS BAJO COMO PROPIEDADES
-const mapDispatchToProps = (dispatch) => ({
-  getComments: (itinerary_id) => dispatch(getComments(itinerary_id)),
-  errorGetComments: (error) => dispatch(errorGetComments(error)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Comments);
-
-//RETURN ORIGINAL
-/*
-<div className="comments-container">
-        {comments && (
-            <div className="comments-list">
-              "COMMENTS" {this.generateComments()}
-            </div>
-          )}
-      </div>
-      */
-
-/*
-class Comments extends Component {
-  
-  render() {
-    return (
-      <div className="comment">
-        COMMENTS HERE! FROM COMPONENT Comments.js return
-      </div>
-    );
-  }
-}
-
-Comments.propTypes = {
-  getComments: PropTypes.func.isRequired,
-  errorGetComments: PropTypes.func.isRequired,
-  comments: PropTypes.array.isRequired,
-};
-
-//TRAIGO ESTADOS DESDE EL REDUCER Y LOS BAJO COMO PROPIEDADES
-const mapStateToProps = (state) => ({
-  isLoading: state.comments.isLoading,
   comments: state.comments.comments,
   error: state.comments.error,
+  itineraries: state.itineraries.itineraries,
 });
-
 
 //TRAIGO DESPACHO DE ACCIONES DESDE LAS ACTIONS Y LAS BAJO COMO PROPIEDADES
 const mapDispatchToProps = (dispatch) => ({
-  getComments: (itinerary_id) => dispatch(getComments(itinerary_id)),
+  getComments: () => dispatch(getComments()),
   errorGetComments: (error) => dispatch(errorGetComments(error)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comments);
 */
-
-//RETURN ORIGINAL
-/*
-<div className="comments-container">
-        {comments && (
-            <div className="comments-list">
-              "COMMENTS" {this.generateComments()}
-            </div>
-          )}
-      </div>
-      */
