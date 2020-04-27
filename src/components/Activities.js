@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Comments from "./Comments";
+//import CommentPost from "./CommentPost";
 import "normalize.css";
-import "./Activities.css";
+import "./ActivitiesComments.css";
 
 class Activities extends Component {
   constructor(props) {
@@ -44,7 +45,7 @@ class Activities extends Component {
 
   render() {
     const { itinerary } = this.props;
-    console.log(this.props);
+    //console.log(this.props);
     return (
       <div className="itinerary">
         <div className="grid-itinerary">
@@ -93,8 +94,8 @@ class Activities extends Component {
             {this.state.open ? "COMMENTS:" : " "}
           </h2>
           <div className="comments-list">
-            <p>Activities.js line 96 -Comments should appear here</p>
-            <Comments />
+            {/*<CommentPost itinerary={itinerary._id} />*/}
+            <Comments itinerary={itinerary._id} />
           </div>
         </div>
       </div>

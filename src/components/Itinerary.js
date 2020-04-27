@@ -13,14 +13,14 @@ class Itineraries extends Component {
   componentDidMount() {
     const city = this.props.match.params.city;
     this.props.fetchItineraries(city);
-    console.log("props by fetching", this.props); //devuelve ciudad y ruta
-    console.log("this is the city", city); //devuelve itineraries.city.name
+    //console.log("props by fetching", this.props); //devuelve ciudad y ruta
+    //console.log("this is the city", city); //devuelve itineraries.city.name
   }
 
   //IMPORTAR LOS COMENTARIOS ACÁ? MAPEAR APARTE?
   generateItinerariesList() {
     let itinerariesList = this.props.itineraries.map((itinerary) => {
-      console.log(this.props); //devuelve lo mismo de 15 pero ahora incluye objetos itinerario y toda su info
+      //console.log(this.props); //devuelve lo mismo de 15 pero ahora incluye objetos itinerario y toda su info
       return (
         <Activities itinerary={itinerary} key={itinerary._id}></Activities>
       );
@@ -28,9 +28,6 @@ class Itineraries extends Component {
     return itinerariesList;
   }
 
-  //BUSCAR OTRO MÉTODO PARA QUE:
-  //a) muestre la foto de la ciudad y despliegue un aviso de que no hay itinerarios para esta ciudad
-  //b) directamente despliegue aviso de que no hay itinerarios para esta ciudad
   generateItineraryHeaderImage() {
     let itineraryHeaderImage = this.props.itineraries.map((itinerary) => {
       return (
@@ -47,7 +44,7 @@ class Itineraries extends Component {
 
   render() {
     let itinerariesList = this.props;
-    console.log("props Itinerary.js are here!", this.props);
+    //console.log("props Itinerary.js are here!", this.props);
 
     return (
       <div className="container-itineraries-list">
@@ -57,7 +54,8 @@ class Itineraries extends Component {
         </div>
         <div className="header-itinerary-text" />
         {
-          /* check for data before mapping!!! */
+          /* check for data before mapping!!! esto es como hacer el itinerary.length para
+          chequear que tenga una longitud dada -o sea, que no esté vacío-*/
           itinerariesList && (
             <div className="itineraries-list">
               {this.generateItinerariesList()}
@@ -76,7 +74,7 @@ Itineraries.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  console.log("state Itinerary.js here!", state);
+  //console.log("state Itinerary.js here!", state);
   return {
     itineraries: state.itineraries.itineraries,
   };

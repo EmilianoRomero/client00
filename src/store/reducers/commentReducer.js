@@ -14,7 +14,6 @@ const initialState = {
   isLoading: false,
   comments: [],
   error: null,
-  //itinerary_id: "",
 };
 
 export default function commentReducer(state = initialState, action) {
@@ -32,35 +31,34 @@ export default function commentReducer(state = initialState, action) {
 
     //SUCCESS CASES
     case GET_COMMENTS_SUCCESS:
-    case POST_COMMENT_SUCCESS:
-      console.log(action.payload) //DEBERÍA OBTENER LOS COMMENTS ACÁ
-
-      //let itinerary_id = this.state.match.params.itinerary_id;
-      //console.log(itinerary_id);
-      /*
-      const itinerary_id = action.payload;
-      const comments = state.itineraries.filter((itinerary) =>
-        itinerary._id === itinerary_id
-      );
-      console.log(comments)
-      */
+      //console.log(action.payload);
       return {
-        /*
-        ...state,
-        itinerary_id,
-        comments
-        */
         ...state,
         isLoading: false,
         comments: action.payload,
         error: null,
-        //comments: state.comments.filter(comments => itinerary_id === action.payload)
-        //comments: state.comments.concat(action.payload.comments),
-        //comments: [...state.comments, ...action.payload.comments]
       };
+    case POST_COMMENT_SUCCESS:
+      //console.log(action.payload);
+      return [
+        ...state,
+        {
+          itinerary_id: action.itinerary_id,
+          username: action.username,
+          comment: action.comment,
+        },
+      ];
+    /*
+      return {
+        ...state,
+        comments: action.payload,
+        isLoading: false,
+        error: null,
+      };
+      */
     case DELETE_COMMENT_SUCCESS:
-      console.log(action.payload.comment._id);
-      console.log(state.comments);
+      //console.log(action.payload.comment._id);
+      //console.log(state.comments);
       return {
         ...state,
         comments: state.comments.filter(
