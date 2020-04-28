@@ -40,14 +40,12 @@ export default function commentReducer(state = initialState, action) {
       };
     case POST_COMMENT_SUCCESS:
       //console.log(action.payload);
-      return [
+      return {
         ...state,
-        {
-          itinerary_id: action.itinerary_id,
-          username: action.username,
-          comment: action.comment,
-        },
-      ];
+        isLoading: false,
+        comments: state.comments.concat(action.payload.comment),
+        error: null,
+      };
     /*
       return {
         ...state,

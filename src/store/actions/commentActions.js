@@ -32,7 +32,7 @@ export const errorGetComments = (error) => {
 };
 
 export const getComments = (itinerary_id) => {
-//export const getComments = () => {
+  //export const getComments = () => {
   return async (dispatch) => {
     dispatch(requestGetComments());
     await axios
@@ -73,13 +73,14 @@ export const requestPostComment = () => {
 };
 
 //Originalmente solo comment
-export const postCommentSuccess = (comment, username, itinerary_id, /*user_id*/) => {
+export const postCommentSuccess = (
+  comment /*, username, itinerary_id, user_id*/) => {
   return {
     type: POST_COMMENT_SUCCESS,
     comment,
-    itinerary_id, //--> take from itinerary props
+    /* itinerary_id, //--> take from itinerary props
     //user_id, --> momentarily username. Goal: have a dynamically generated username
-    username,
+    username,*/
   };
 };
 
@@ -90,12 +91,12 @@ export const errorPostComment = (error) => {
   };
 };
 
-export function postNewComment() {
+export function postNewComment(itinerary_id, comment) {
   return async (dispatch) => {
     dispatch(requestPostComment());
     await axios
-      .post("http://localhost:5000/comments/postnew")
-      //ORIGINALLY .post("http://localhost:5000/comments/" + comment.itinerary_id, comment)
+      //OLD NEW ROUTE .post("http://localhost:5000/comments/postnew")
+      .post("http://localhost:5000/comments/itinerary/" + itinerary_id, comment)
       .then((res) => {
         dispatch(postCommentSuccess(res.data));
         console.log("NEW COMMENT POSTED SUCCESSFULLY");

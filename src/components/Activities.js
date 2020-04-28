@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Comments from "./Comments";
-//import CommentPost from "./CommentPost";
+import CommentPost from "./CommentPost";
 import "normalize.css";
 import "./ActivitiesComments.css";
 
@@ -94,8 +94,8 @@ class Activities extends Component {
             {this.state.open ? "COMMENTS:" : " "}
           </h2>
           <div className="comments-list">
-            {/*<CommentPost itinerary={itinerary._id} />*/}
-            <Comments itinerary={itinerary._id} />
+            <CommentPost itinerary={itinerary._id} {...this.props} />
+            <Comments itinerary={itinerary._id} /*{...this.props}*/ />
           </div>
         </div>
       </div>
@@ -105,8 +105,10 @@ class Activities extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    itineraries: state.itineraries,
-    comments: state.comments,
+    itineraries: state.itineraries.itineraries,
+    comments: state.comments.comments,
+    //comment: state.comments,
+    error: state.comments.error,
   };
 };
 
