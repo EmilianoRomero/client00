@@ -5,18 +5,26 @@ import {
   getComments,
   errorGetComments,
   //postNewComment,
-  //deleteComment,
+  deleteComment,
 } from "../store/actions/commentActions";
 import "./ActivitiesComments.css";
 
 class Comments extends Component {
   componentDidMount() {
     const itinerary_id = this.props.itinerary;
-    //I'm accessing the object, not the array,
-    //that's why I use itinerary and no itineraries.whatever
+    //I want the object, not the array, that's why I use itinerary and no itineraries.whatever
     this.props.getComments(itinerary_id);
     //console.log("props by fetching", this.props.itineraries);
   }
+
+  handleDelete = (id) => {
+    /*if (!this.props.authenticated) {
+      this.handleError();
+    } else {*/
+    this.props.deleteComment(id);
+    window.location.reload(false);
+  };
+  //};
 
   render() {
     let comments = this.props.comments.filter((comment) => {
@@ -31,6 +39,12 @@ class Comments extends Component {
             return (
               <div className="comment" key={i}>
                 <p className="comment">{comment.comment}</p>
+                <button
+                  className="delete-comment"
+                  onClick={(e) => this.handleDelete(comment._id)}
+                >
+                  Delete your comment
+                </button>
               </div>
             );
           })
@@ -65,6 +79,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   getComments: (itinerary_id) => dispatch(getComments(itinerary_id)),
   errorGetComments: (error) => dispatch(errorGetComments(error)),
+  deleteComment: (id) => dispatch(deleteComment(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comments);

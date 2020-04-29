@@ -4,12 +4,9 @@ import PropTypes from "prop-types";
 import {
   errorPostComment,
   postNewComment,
-  //deleteComment,
 } from "../store/actions/commentActions";
-//import classnames from "classnames"; //Necessary to render the conditional errors
 import "./ActivitiesComments.css";
 
-//LIMPIAR CAMPO
 //QUE EL MENSAJE APAREZCA ENTRE LOS MENSAJES
 //QUE EL MENSAJE APAREZCA EN MONGOOSE
 
@@ -20,10 +17,19 @@ class CommentPost extends Component {
       comment: "",
       username: "",
       user_id: "",
+      itinerary_id: "",
       errors: {},
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  //determino que el valor de la propiedad "itinerary_id" del nuevo comentario que voy a postear
+  //sea el valor de la propiedad ".id" del itinerario en cuestión
+  //la propiedad "itinerary_id" fue declarada en el modelo y esquema "comment"
+  componentDidMount() {
+    this.setState({ itinerary_id: this.props.itinerary._id });
+    console.log(this.props.itinerary._id);
   }
 
   handleInputChange(e) {
@@ -38,34 +44,39 @@ class CommentPost extends Component {
       comment: this.state.comment,
       username: this.state.username,
       user_id: this.state.user_id,
-      itinerary_id: this.props.itinerary._id,
+      itinerary_id_itinerary: this.props.itinerary._id, //id del objeto itinerary
       title: this.props.itinerary.title,
+      comments: this.props.comments, //array de comentarios ya existente para los itinerarios de la ciudad, a donde mandar el nuevo comment
+      itinerary_id: this.state.itinerary_id,
     };
-    this.props.postNewComment(comment, this.props.history);
-    console.log(comment);
-    this.setState({ comment: "", username: "" }); //clean fields after submitting
+    // if (this.props.itinerary_id_itinerary === this.state.comments.itinerary_id) {
+    //  this.props.postNewComment(comment, this.props.history);
+    // }
+    this.props.postNewComment(comment, this.props.history); //new comment + estado al momento de postearlo
+    console.log(comment); //const comment, o sea el nuevo comentario generado y arriba definido
+    console.log(this.props.comments); //todos los comentarios existentes para el id en cuestión
+    console.log(this.props.comment); //todas las propiedades del objeto comment
+    this.setState({ comment: "", username: "" }); //limpia los campos después del envío
   }
 
-  /*
-  componentDidUpdate(prevProps, prevState) {
-    if (this.props.username !== null) {
-      if (this.state.user_id === "") {
-        this.setState({ user_id: this.props.user._id });
-      }
-    }
-  }
-*/
+  //  componentDidUpdate(prevProps, prevState) {
+  //    if (this.props.username !== null) {
+  //      if (this.state.user_id === "") {
+  //        this.setState({ user_id: this.props.user._id });
+  //      }
+  //    }
+  //  }
 
   render() {
     const { errors } = this.state;
     return (
       <div className="new-comment-container">
-        <form ref="commentForm" onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <button className="line1-submit" id="submit-button" type="submit">
             Share your comment!
           </button>
           <div className="line2-username">
-            <label htmlFor="Username">User name: </label>
+            <label htmlFor="username">User name: </label>
             <input
               className={
                 ("username-field",
@@ -85,7 +96,7 @@ class CommentPost extends Component {
           </div>
 
           <div className="line3-comment">
-            <label htmlFor="Comment"></label>
+            <label htmlFor="comment"></label>
             <input
               className={
                 ("comment-field",
@@ -131,7 +142,7 @@ const mapStateToProps = (state) => {
 
 //TRAIGO DESPACHO DE ACCIONES DESDE LAS ACTIONS Y LAS BAJO COMO PROPIEDADES
 const mapDispatchToProps = (dispatch) => ({
-  postNewComment: (comment, itinerary_id) => dispatch(postNewComment(comment, itinerary_id)),
+  postNewComment: (itinerary_id) => dispatch(postNewComment(itinerary_id)),
   errorPostComment: (error) => dispatch(errorPostComment(error)),
 });
 

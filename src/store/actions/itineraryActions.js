@@ -27,7 +27,7 @@ const fetchItinerariesFailure = (error) => {
 export const fetchItineraries = (city) => {
   //está bien pasar la ciudad como parámetro acá
   return async (dispatch) => {
-    dispatch(fetchItinerariesRequest(city));
+    dispatch(fetchItinerariesRequest());
     try {
       let response = await fetch("http://localhost:5000/itineraries/" + city);
       let json = await response.json();

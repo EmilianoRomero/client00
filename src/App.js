@@ -22,10 +22,10 @@ export default class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route path="/cities" component={Cities} />
             <Route path="/itineraries/:city" component={Itineraries} />
-            {/*<Route exact path="/comments" component={Comments} />
-            <Route path="/comments/all" component={Comments} />
-            <Route path="/commments/itinerary/:itinerary_id" component={Comments}/>*/}
-            <Route path="/commments/itinerary/:itinerary_id" component={CommentPost} />
+            {/*<Route path="/comments/all" component={Comments} /> get all*/}
+            {/*<Route path="/comments/:id" component={Comments} /> delete by comment id*/}
+            {/*<Route path="/commments/itinerary/:itinerary_id" component={Comments}/> get by itinerary id*/}
+            {/*<Route path="/commments/itinerary/:itinerary_id" component={CommentPost} />*/}
             <Route path="/users/register" component={SignUp} />
             <Route path="/users/login" component={LogIn} />
           </Switch>

@@ -48,6 +48,79 @@ export const getComments = (itinerary_id) => {
   };
 };
 
+export const requestPostComment = () => {
+  return {
+    type: REQUEST_POST_COMMENT,
+  };
+};
+
+//Originalmente solo comment
+export const postCommentSuccess = (comment) => {
+  return {
+    type: POST_COMMENT_SUCCESS,
+    comment,
+  };
+};
+
+export const errorPostComment = (error) => {
+  return {
+    type: ERROR_POST_COMMENT,
+    payload: error,
+  };
+};
+
+export function postNewComment(itinerary_id) {
+  return async (dispatch) => {
+    dispatch(requestPostComment());
+    await axios
+      //OLD NEW ROUTE .post("http://localhost:5000/comments/postnew")
+      .post("http://localhost:5000/comments/itinerary/" + itinerary_id)
+      .then((res) => {
+        dispatch(postCommentSuccess(res.data));
+        console.log("NEW COMMENT POSTED SUCCESSFULLY");
+        console.log(res.data);
+      })
+      .catch((error) => {
+        dispatch(errorPostComment(error));
+      });
+  };
+}
+
+export const requestDeleteComment = () => ({
+  type: REQUEST_DELETE_COMMENT,
+});
+
+//Originalmente era comment. De qué itinerario (itineraryId) y qué comentario (index del comment)
+export const successDeleteComment = (comment) => ({
+  type: DELETE_COMMENT_SUCCESS,
+  comment,
+  /*
+  itinerary_id,
+  i,
+  */
+});
+
+export const errorDeleteComment = (error) => ({
+  type: ERROR_DELETE_COMMENT,
+  payload: error,
+});
+
+export function deleteComment(id) {
+  return async (dispatch) => {
+    dispatch(requestDeleteComment());
+    await axios
+      .delete("http://localhost:5000/comments/" + id)
+      //{headers: tokenConfig().headers}) //REVISAR CÓMO LA AUTORIZACIÓN AFECTA A LA ACCIÓN
+      .then((res) => {
+        console.log(res.data);
+        dispatch(successDeleteComment(res.data));
+      })
+      .catch((error) => {
+        dispatch(errorDeleteComment(error));
+      });
+  };
+}
+
 //NO AXIOS
 /*
 export const getComments = (itinerary_id) => {
@@ -65,79 +138,3 @@ export const getComments = (itinerary_id) => {
   };
 };
 */
-
-export const requestPostComment = () => {
-  return {
-    type: REQUEST_POST_COMMENT,
-  };
-};
-
-//Originalmente solo comment
-export const postCommentSuccess = (
-  comment /*, username, itinerary_id, user_id*/) => {
-  return {
-    type: POST_COMMENT_SUCCESS,
-    comment,
-    /* itinerary_id, //--> take from itinerary props
-    //user_id, --> momentarily username. Goal: have a dynamically generated username
-    username,*/
-  };
-};
-
-export const errorPostComment = (error) => {
-  return {
-    type: ERROR_POST_COMMENT,
-    payload: error,
-  };
-};
-
-export function postNewComment(itinerary_id, comment) {
-  return async (dispatch) => {
-    dispatch(requestPostComment());
-    await axios
-      //OLD NEW ROUTE .post("http://localhost:5000/comments/postnew")
-      .post("http://localhost:5000/comments/itinerary/" + itinerary_id, comment)
-      .then((res) => {
-        dispatch(postCommentSuccess(res.data));
-        console.log("NEW COMMENT POSTED SUCCESSFULLY");
-        console.log(res.data);
-      })
-      .catch((error) => {
-        dispatch(errorPostComment(error));
-      });
-  };
-}
-
-export const requestDeleteComment = () => ({
-  type: REQUEST_DELETE_COMMENT,
-});
-
-//Originalmente era comment. De qué itinerario (itineraryId) y qué comentario (index del comment)
-export const successDeleteComment = (itinerary_id, i) => ({
-  type: DELETE_COMMENT_SUCCESS,
-  itinerary_id,
-  i,
-});
-
-export const errorDeleteComment = (error) => ({
-  type: ERROR_DELETE_COMMENT,
-  payload: error,
-});
-
-export function deleteComment(id) {
-  return async (dispatch) => {
-    dispatch(requestDeleteComment());
-    await axios
-      .delete(
-        "http://localhost:5000/comments/" + id
-        //{headers: tokenConfig().headers} //REVISAR CÓMO LA AUTORIZACIÓN AFECTA A LA ACCIÓN
-      )
-      .then((res) => {
-        console.log(res.data);
-        dispatch(successDeleteComment(res.data));
-      })
-      .catch((error) => {
-        dispatch(errorDeleteComment(error));
-      });
-  };
-}
