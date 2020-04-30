@@ -44,7 +44,7 @@ class Activities extends Component {
   }
 
   render() {
-    const { itinerary } = this.props;
+    const { itinerary, comments, comment } = this.props;
     //console.log(this.props);
     return (
       <div className="itinerary">
@@ -94,8 +94,8 @@ class Activities extends Component {
             {this.state.open ? "COMMENTS:" : " "}
           </h2>
           <div className="comments-list">
-            <CommentPost itinerary={itinerary._id} {...this.props} /> {/*NO BORRAR {...this.props} */} 
-            <Comments itinerary={itinerary._id} />
+            <CommentPost itinerary={itinerary._id} comment={comment.comment} {...this.props} /> {/*NO BORRAR {...this.props} */} 
+            <Comments itinerary={itinerary._id} comments={comments.comments}/>
           </div>
         </div>
       </div>
@@ -109,6 +109,10 @@ const mapStateToProps = (state) => {
     comments: state.comments.comments,
     comment: state.comments,
     error: state.comments.error,
+
+    isLoading: state.comments.isLoading,
+
+    errors: state.errors,
   };
 };
 

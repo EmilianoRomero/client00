@@ -31,13 +31,12 @@ export const errorGetComments = (error) => {
   };
 };
 
-export const getComments = (itinerary_id) => {
-  //export const getComments = () => {
+export const getComments = () => {
   return async (dispatch) => {
     dispatch(requestGetComments());
     await axios
-      .get("http://localhost:5000/comments/itinerary/" + itinerary_id)
-      //.get("http://localhost:5000/comments/all/")
+      //.get("http://localhost:5000/comments/itinerary/" + itinerary_id)
+      .get("http://localhost:5000/comments/")
       .then((res) => {
         dispatch(successGetComments(res.data));
         console.log(res);
@@ -53,15 +52,12 @@ export const requestPostComment = () => {
     type: REQUEST_POST_COMMENT,
   };
 };
-
-//Originalmente solo comment
 export const postCommentSuccess = (comment) => {
   return {
     type: POST_COMMENT_SUCCESS,
     comment,
   };
 };
-
 export const errorPostComment = (error) => {
   return {
     type: ERROR_POST_COMMENT,
@@ -69,16 +65,16 @@ export const errorPostComment = (error) => {
   };
 };
 
-export function postNewComment(itinerary_id) {
+export function postNewComment() {
   return async (dispatch) => {
     dispatch(requestPostComment());
     await axios
-      //OLD NEW ROUTE .post("http://localhost:5000/comments/postnew")
-      .post("http://localhost:5000/comments/itinerary/" + itinerary_id)
+      //.post("http://localhost:5000/comments/itinerary/" + comment.itinerary_ref, comment)
+      .post("http://localhost:5000/comments/")
       .then((res) => {
         dispatch(postCommentSuccess(res.data));
-        console.log("NEW COMMENT POSTED SUCCESSFULLY");
         console.log(res.data);
+        console.log("NEW COMMENT POSTED SUCCESSFULLY");
       })
       .catch((error) => {
         dispatch(errorPostComment(error));

@@ -42,15 +42,12 @@ export default function commentReducer(state = initialState, action) {
       return {
         ...state,
         isLoading: false,
-        comments: state.comments.concat(action.payload.comment),
+        comments: [action.payload, ...state.comments],
+        //state.comments.concat(action.payload.comment),
         error: null,
       };
     case DELETE_COMMENT_SUCCESS:
       return {
-        /*
-        ...state,
-        comments: [...state.comments, action.payload],
-        */ //GENERA ERROR!!
         ...state,
         comments: state.comments.filter(
           (comment) => comment._id !== action.payload.comment._id

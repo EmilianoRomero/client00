@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import {
   getComments,
   errorGetComments,
-  //postNewComment,
+  postNewComment,
+  errorPostComment,
   deleteComment,
 } from "../store/actions/commentActions";
 import "./ActivitiesComments.css";
@@ -28,7 +29,7 @@ class Comments extends Component {
 
   render() {
     let comments = this.props.comments.filter((comment) => {
-      return comment.itinerary_id !== this.props.itinerary;
+      return comment.itinerary_ref === this.props.itinerary;
     });
     //console.log("props Comments.js are here!", this.props);
 
@@ -77,8 +78,10 @@ const mapStateToProps = (state) => {
 
 //TRAIGO DESPACHO DE ACCIONES DESDE LAS ACTIONS Y LAS BAJO COMO PROPIEDADES
 const mapDispatchToProps = (dispatch) => ({
-  getComments: (itinerary_id) => dispatch(getComments(itinerary_id)),
+  getComments: () => dispatch(getComments()),
   errorGetComments: (error) => dispatch(errorGetComments(error)),
+  postNewComment: () => dispatch(postNewComment()),
+  errorPostComment: (error) => dispatch(errorPostComment(error)),
   deleteComment: (id) => dispatch(deleteComment(id)),
 });
 

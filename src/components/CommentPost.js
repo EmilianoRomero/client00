@@ -16,8 +16,8 @@ class CommentPost extends Component {
     this.state = {
       comment: "",
       username: "",
-      user_id: "",
-      itinerary_id: "",
+      user_ref: "",
+      itinerary_ref: "",
       errors: {},
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -28,7 +28,7 @@ class CommentPost extends Component {
   //sea el valor de la propiedad ".id" del itinerario en cuestión
   //la propiedad "itinerary_id" fue declarada en el modelo y esquema "comment"
   componentDidMount() {
-    this.setState({ itinerary_id: this.props.itinerary._id });
+    this.setState({ itinerary_ref: this.props.itinerary._id });
     console.log(this.props.itinerary._id);
   }
 
@@ -43,12 +43,13 @@ class CommentPost extends Component {
     const comment = {
       comment: this.state.comment,
       username: this.state.username,
-      user_id: this.state.user_id,
-      itinerary_id_itinerary: this.props.itinerary._id, //id del objeto itinerary
+      user_ref: this.props.user_id, //this.state.user_ref ?!?!?
+      itinerary_ref: this.state.itinerary_ref,
+      itinerary_id: this.props.itinerary._id, //id del objeto itinerary
       title: this.props.itinerary.title,
-      comments: this.props.comments, //array de comentarios ya existente para los itinerarios de la ciudad, a donde mandar el nuevo comment
-      itinerary_id: this.state.itinerary_id,
+      //comments: this.props.comments, //array de comentarios ya existente para los itinerarios de la ciudad, a donde mandar el nuevo comment
     };
+    //const comments = this.props.comments;
     // if (this.props.itinerary_id_itinerary === this.state.comments.itinerary_id) {
     //  this.props.postNewComment(comment, this.props.history);
     // }
@@ -57,6 +58,7 @@ class CommentPost extends Component {
     console.log(this.props.comments); //todos los comentarios existentes para el id en cuestión
     console.log(this.props.comment); //todas las propiedades del objeto comment
     this.setState({ comment: "", username: "" }); //limpia los campos después del envío
+    //window.location.reload(false);
   }
 
   //  componentDidUpdate(prevProps, prevState) {
@@ -72,7 +74,12 @@ class CommentPost extends Component {
     return (
       <div className="new-comment-container">
         <form onSubmit={this.handleSubmit}>
-          <button className="line1-submit" id="submit-button" type="submit">
+          <button
+            className="line1-submit"
+            id="submit-button"
+            type="submit"
+            onClick={this.handleSubmit}
+          >
             Share your comment!
           </button>
           <div className="line2-username">
@@ -142,7 +149,7 @@ const mapStateToProps = (state) => {
 
 //TRAIGO DESPACHO DE ACCIONES DESDE LAS ACTIONS Y LAS BAJO COMO PROPIEDADES
 const mapDispatchToProps = (dispatch) => ({
-  postNewComment: (itinerary_id) => dispatch(postNewComment(itinerary_id)),
+  postNewComment: () => dispatch(postNewComment()), //orignalmente (comment)
   errorPostComment: (error) => dispatch(errorPostComment(error)),
 });
 

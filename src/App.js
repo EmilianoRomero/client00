@@ -5,7 +5,7 @@ import Landing from "./screen/Landing";
 import Cities from "./cities";
 import Itineraries from "./components/Itinerary";
 import Comments from "./components/Comments";
-import CommentPost from "./components/CommentPost";
+//import CommentPost from "./components/CommentPost";
 import SignUp from "./components/SignUp";
 import LogIn from "./components/LogIn";
 
@@ -24,7 +24,7 @@ export default class App extends Component {
             <Route path="/itineraries/:city" component={Itineraries} />
             {/*<Route path="/comments/all" component={Comments} /> get all*/}
             {/*<Route path="/comments/:id" component={Comments} /> delete by comment id*/}
-            {/*<Route path="/commments/itinerary/:itinerary_id" component={Comments}/> get by itinerary id*/}
+            {/*<Route path="/commments/itinerary/:itinerary_id" component={Comments}/>*/}
             {/*<Route path="/commments/itinerary/:itinerary_id" component={CommentPost} />*/}
             <Route path="/users/register" component={SignUp} />
             <Route path="/users/login" component={LogIn} />
