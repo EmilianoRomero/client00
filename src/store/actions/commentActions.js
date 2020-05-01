@@ -35,7 +35,7 @@ export const getComments = () => {
   return async (dispatch) => {
     dispatch(requestGetComments());
     await axios
-      //.get("http://localhost:5000/comments/itinerary/" + itinerary_id)
+      //.get("http://localhost:5000/comments/itinerary/" + itinerary_id) NO ES NECESARIO
       .get("http://localhost:5000/comments/")
       .then((res) => {
         dispatch(successGetComments(res.data));
@@ -65,12 +65,12 @@ export const errorPostComment = (error) => {
   };
 };
 
-export function postNewComment() {
+export function postNewComment(comment, itinerary_ref) {
   return async (dispatch) => {
     dispatch(requestPostComment());
     await axios
       //.post("http://localhost:5000/comments/itinerary/" + comment.itinerary_ref, comment)
-      .post("http://localhost:5000/comments/")
+      .post("http://localhost:5000/comments/", comment, itinerary_ref)
       .then((res) => {
         dispatch(postCommentSuccess(res.data));
         console.log(res.data);
@@ -85,17 +85,10 @@ export function postNewComment() {
 export const requestDeleteComment = () => ({
   type: REQUEST_DELETE_COMMENT,
 });
-
-//Originalmente era comment. De qué itinerario (itineraryId) y qué comentario (index del comment)
 export const successDeleteComment = (comment) => ({
   type: DELETE_COMMENT_SUCCESS,
   comment,
-  /*
-  itinerary_id,
-  i,
-  */
 });
-
 export const errorDeleteComment = (error) => ({
   type: ERROR_DELETE_COMMENT,
   payload: error,

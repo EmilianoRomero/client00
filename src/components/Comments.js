@@ -15,7 +15,7 @@ class Comments extends Component {
     const itinerary_id = this.props.itinerary;
     //I want the object, not the array, that's why I use itinerary and no itineraries.whatever
     this.props.getComments(itinerary_id);
-    //console.log("props by fetching", this.props.itineraries);
+    //console.log("props by fetching", this.props.itinerary);
   }
 
   handleDelete = (id) => {
@@ -28,10 +28,13 @@ class Comments extends Component {
   //};
 
   render() {
+    //let comment = this.props;
     let comments = this.props.comments.filter((comment) => {
+      //console.log("COMMENT.ITINERARY_REF --> ", comment.itinerary_ref);
       return comment.itinerary_ref === this.props.itinerary;
     });
-    //console.log("props Comments.js are here!", this.props);
+    //console.log("THIS.PROPS.COMMENTS --> ", this.props.comments);
+    //console.log("THIS.PROPS.ITINERARY --> ", this.props.itinerary);
 
     return (
       <React.Fragment>
@@ -71,6 +74,7 @@ const mapStateToProps = (state) => {
   return {
     isLoading: state.comments.isLoading,
     comments: state.comments.comments,
+    comment: state.comments,
     error: state.comments.error,
     itineraries: state.itineraries.itineraries,
   };

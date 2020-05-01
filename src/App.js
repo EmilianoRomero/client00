@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Landing from "./screen/Landing";
 import Cities from "./cities";
 import Itineraries from "./components/Itinerary";
-import Comments from "./components/Comments";
+//import Comments from "./components/Comments";
 //import CommentPost from "./components/CommentPost";
 import SignUp from "./components/SignUp";
 import LogIn from "./components/LogIn";

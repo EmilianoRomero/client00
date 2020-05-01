@@ -29,7 +29,7 @@ class CommentPost extends Component {
   //la propiedad "itinerary_id" fue declarada en el modelo y esquema "comment"
   componentDidMount() {
     this.setState({ itinerary_ref: this.props.itinerary._id });
-    console.log(this.props.itinerary._id);
+    //console.log(this.props.itinerary._id);
   }
 
   handleInputChange(e) {
@@ -41,12 +41,13 @@ class CommentPost extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const comment = {
+      itinerary_id: this.props.itinerary._id, //id del objeto itinerary
+      title: this.props.itinerary.title,
+
       comment: this.state.comment,
       username: this.state.username,
       user_ref: this.props.user_id, //this.state.user_ref ?!?!?
       itinerary_ref: this.state.itinerary_ref,
-      itinerary_id: this.props.itinerary._id, //id del objeto itinerary
-      title: this.props.itinerary.title,
       //comments: this.props.comments, //array de comentarios ya existente para los itinerarios de la ciudad, a donde mandar el nuevo comment
     };
     //const comments = this.props.comments;
@@ -54,11 +55,11 @@ class CommentPost extends Component {
     //  this.props.postNewComment(comment, this.props.history);
     // }
     this.props.postNewComment(comment, this.props.history); //new comment + estado al momento de postearlo
-    console.log(comment); //const comment, o sea el nuevo comentario generado y arriba definido
-    console.log(this.props.comments); //todos los comentarios existentes para el id en cuestión
-    console.log(this.props.comment); //todas las propiedades del objeto comment
+    //console.log(comment); //const comment, o sea el nuevo comentario generado y arriba definido
+    //console.log(this.props.comments); //todos los comentarios existentes para el id en cuestión
+    //console.log(this.props.comment); //todas las propiedades del objeto comment
     this.setState({ comment: "", username: "" }); //limpia los campos después del envío
-    //window.location.reload(false);
+    window.location.reload(false);
   }
 
   //  componentDidUpdate(prevProps, prevState) {
@@ -95,6 +96,9 @@ class CommentPost extends Component {
               id="username"
               placeholder="enter username"
               onChange={this.handleInputChange}
+              autoComplete="off"
+              autoCorrect="off"
+              spellCheck="off"
               name="username"
               value={this.state.username}
               error={errors.username}
@@ -115,6 +119,9 @@ class CommentPost extends Component {
               id="comment"
               placeholder="write your comment"
               onChange={this.handleInputChange}
+              autoComplete="off"
+              autoCorrect="off"
+              spellCheck="off"
               name="comment"
               value={this.state.comment}
               error={errors.username}
@@ -149,7 +156,8 @@ const mapStateToProps = (state) => {
 
 //TRAIGO DESPACHO DE ACCIONES DESDE LAS ACTIONS Y LAS BAJO COMO PROPIEDADES
 const mapDispatchToProps = (dispatch) => ({
-  postNewComment: () => dispatch(postNewComment()), //orignalmente (comment)
+  postNewComment: (comment, itinerary_ref) =>
+    dispatch(postNewComment(comment, itinerary_ref)), //orignalmente (comment)
   errorPostComment: (error) => dispatch(errorPostComment(error)),
 });
 
