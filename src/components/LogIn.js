@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { loginUser } from "../store/actions/authActions.js";
@@ -105,16 +105,26 @@ class Login extends Component {
             <button className="line4-login" id="login-button" type="submit">
               Login
             </button>
+
+            <button
+              className="line5-google-btn"
+              id="login-button"
+              type="button"
+            >
+              <a href="http://localhost:5000/oauth/google/redirect">Google</a>
+            </button>
+            {/*}
             <Link>
               <button
                 className="line5-google-btn"
                 id="google-login-button"
-                to="/auth/google"
+                to="/auth/google" //"http://localhost:5000/oauth/google/redirect"
                 type="submit"
               >
                 Google
               </button>
             </Link>
+              */}
           </form>
 
           <HomeButton />

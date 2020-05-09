@@ -7,9 +7,6 @@ import {
 } from "../store/actions/commentActions";
 import "./ActivitiesComments.css";
 
-//QUE EL MENSAJE APAREZCA ENTRE LOS MENSAJES
-//QUE EL MENSAJE APAREZCA EN MONGOOSE
-
 class CommentPost extends Component {
   constructor() {
     super();
@@ -84,7 +81,7 @@ class CommentPost extends Component {
             Share your comment!
           </button>
           <div className="line2-username">
-            <label htmlFor="username">User name: </label>
+            <label htmlFor="username"></label>
             <input
               className={
                 ("username-field",

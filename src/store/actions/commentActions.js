@@ -6,6 +6,9 @@ import {
   REQUEST_POST_COMMENT,
   POST_COMMENT_SUCCESS,
   ERROR_POST_COMMENT,
+  REQUEST_EDIT_COMMENT,
+  EDIT_COMMENT_SUCCESS,
+  ERROR_EDIT_COMMENT,
   REQUEST_DELETE_COMMENT,
   DELETE_COMMENT_SUCCESS,
   ERROR_DELETE_COMMENT,
@@ -16,21 +19,18 @@ export const requestGetComments = () => {
     type: REQUEST_GET_COMMENTS,
   };
 };
-
 export const successGetComments = (comments) => {
   return {
     type: GET_COMMENTS_SUCCESS,
     payload: comments,
   };
 };
-
 export const errorGetComments = (error) => {
   return {
     type: ERROR_GET_COMMENTS,
     payload: error,
   };
 };
-
 export const getComments = () => {
   return async (dispatch) => {
     dispatch(requestGetComments());
@@ -64,7 +64,6 @@ export const errorPostComment = (error) => {
     payload: error,
   };
 };
-
 export function postNewComment(comment, itinerary_ref) {
   return async (dispatch) => {
     dispatch(requestPostComment());
@@ -93,7 +92,6 @@ export const errorDeleteComment = (error) => ({
   type: ERROR_DELETE_COMMENT,
   payload: error,
 });
-
 export function deleteComment(id) {
   return async (dispatch) => {
     dispatch(requestDeleteComment());
@@ -106,6 +104,33 @@ export function deleteComment(id) {
       })
       .catch((error) => {
         dispatch(errorDeleteComment(error));
+      });
+  };
+}
+
+export const requestEditComment = () => ({
+  type: REQUEST_EDIT_COMMENT,
+});
+export const successEditComment = (comment) => ({
+  type: EDIT_COMMENT_SUCCESS,
+  comment,
+});
+export const errorEditComment = (error) => ({
+  type: ERROR_EDIT_COMMENT,
+  payload: error,
+});
+export function editComment(comment) {
+  return async (dispatch) => {
+    dispatch(requestEditComment());
+    await axios
+      .patch("http://localhost:5000/comments/", comment._id, comment)
+      //{headers: tokenConfig().headers}) //REVISAR CÓMO LA AUTORIZACIÓN AFECTA A LA ACCIÓN
+      .then((res) => {
+        console.log(res.data);
+        dispatch(successEditComment(res.data));
+      })
+      .catch((error) => {
+        dispatch(errorEditComment(error));
       });
   };
 }

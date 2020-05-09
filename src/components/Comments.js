@@ -7,7 +7,10 @@ import {
   postNewComment,
   errorPostComment,
   deleteComment,
+  errorEditComment,
+  editComment,
 } from "../store/actions/commentActions";
+import CommentEdit from "./CommentEdit";
 import "./ActivitiesComments.css";
 
 class Comments extends Component {
@@ -45,10 +48,15 @@ class Comments extends Component {
                 <p className="comment">{comment.comment}</p>
                 <button
                   className="delete-comment"
-                  onClick={(e) => this.handleDelete(comment._id)}
+                  onClick={() => this.handleDelete(comment._id)}
                 >
-                  Delete your comment
+                  ---Delete your comment---
                 </button>
+                {/*COMPONENTE EDIT COMMENT*/}
+                <CommentEdit
+                  key={comment._id}
+                  {...this.props} /*onClick={this.handleSubmit}*/
+                />
               </div>
             );
           })
@@ -65,6 +73,9 @@ Comments.propTypes = {
   errorGetComments: PropTypes.func.isRequired,
   comments: PropTypes.array.isRequired,
   itineraries: PropTypes.array.isRequired,
+
+  errorEditComment: PropTypes.func.isRequired,
+  editComment: PropTypes.func.isRequired,
 };
 
 //TRAIGO ESTADOS DESDE EL REDUCER Y LOS BAJO COMO PROPIEDADES
@@ -87,6 +98,9 @@ const mapDispatchToProps = (dispatch) => ({
   postNewComment: () => dispatch(postNewComment()),
   errorPostComment: (error) => dispatch(errorPostComment(error)),
   deleteComment: (id) => dispatch(deleteComment(id)),
+  //el comentario es borrado, pero después de 2 o 3 clicks
+  editComment: (id) => dispatch(editComment(id)), //orignalmente (comment)
+  errorEditComment: (error) => dispatch(errorEditComment(error)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comments);

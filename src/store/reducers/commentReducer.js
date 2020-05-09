@@ -5,6 +5,9 @@ import {
   REQUEST_POST_COMMENT,
   POST_COMMENT_SUCCESS,
   ERROR_POST_COMMENT,
+  REQUEST_EDIT_COMMENT,
+  EDIT_COMMENT_SUCCESS,
+  ERROR_EDIT_COMMENT,
   REQUEST_DELETE_COMMENT,
   DELETE_COMMENT_SUCCESS,
   ERROR_DELETE_COMMENT,
@@ -14,6 +17,7 @@ const initialState = {
   isLoading: false,
   comments: [],
   error: null,
+  //updated_comment: [],
 };
 
 export default function commentReducer(state = initialState, action) {
@@ -22,6 +26,7 @@ export default function commentReducer(state = initialState, action) {
     //REQUESTS
     case REQUEST_GET_COMMENTS:
     case REQUEST_POST_COMMENT:
+    case REQUEST_EDIT_COMMENT:
     case REQUEST_DELETE_COMMENT:
       return {
         ...state,
@@ -48,9 +53,20 @@ export default function commentReducer(state = initialState, action) {
       };
     case DELETE_COMMENT_SUCCESS:
       return {
+        //state.filter((comment) => comment._id !== action._id);
         ...state,
         comments: state.comments.filter(
           (comment) => comment._id !== action.payload.comment._id
+        ),
+        isLoading: false,
+      };
+    case EDIT_COMMENT_SUCCESS:
+      return {
+        ...state,
+        //comments: action.payload,
+        //updated_comment: action.payload,
+        comments: state.comments.map(
+          (comment) => comment._id === action.payload.comment._id
         ),
         isLoading: false,
       };
@@ -58,6 +74,7 @@ export default function commentReducer(state = initialState, action) {
     //ERROR CASES
     case ERROR_GET_COMMENTS:
     case ERROR_POST_COMMENT:
+    case ERROR_EDIT_COMMENT:
     case ERROR_DELETE_COMMENT:
       return {
         ...state,
