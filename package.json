@@ -18,7 +18,7 @@
     "font-awesome": "^4.7.0",
     "googleapis": "^49.0.0",
     "is-empty": "^1.2.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "jwt-decode": "^2.2.0",
     "material-ui-snackbar-provider": "^1.4.0",
     "mongoose": "^5.9.10",
